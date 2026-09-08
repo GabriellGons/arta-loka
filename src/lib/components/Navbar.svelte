@@ -166,12 +166,12 @@
 		--nav-gold: #d79f39;
 		--nav-gold-hover: #e5af4b;
 		--nav-dark: #121820;
-		--nav-bg: rgba(14, 25, 41, 0.88);
+		--nav-bg: rgba(7, 19, 34, 0.75);
 		--nav-border: rgba(255, 255, 255, 0.08);
 	}
 
 	.navbar-wrapper {
-		position: sticky;
+		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;

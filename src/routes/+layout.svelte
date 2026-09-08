@@ -1,7 +1,7 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.png';
 	import '../app.css';
-	import { Navbar } from '$lib';
+	import { Navbar, CtaBanner, Footer } from '$lib';
 
 	let { children } = $props();
 </script>
@@ -16,4 +16,8 @@
 <main>
 	{@render children()}
 </main>
+
+<CtaBanner />
+
+<Footer />
 
