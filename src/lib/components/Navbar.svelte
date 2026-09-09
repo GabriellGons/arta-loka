@@ -22,7 +22,7 @@
 		ctaHref = '#partner',
 		items = [
 			{ label: 'HOME', href: '/' },
-			{ label: 'ABOUT US', href: '#about-us' },
+			{ label: 'ABOUT US', href: '/about' },
 			{ label: 'OUR BUSINESS', href: '#our-business' },
 			{ label: 'SERVICES', href: '#services' },
 			{ label: 'PROJECTS', href: '#projects' },
