@@ -24,11 +24,11 @@
 	];
 
 	const navCol2 = [
-		{ label: 'About Us', href: '#about-us' },
+		{ label: 'About Us', href: '/about' },
 		{ label: 'Services', href: '#services' },
 		{ label: 'Partnership', href: '#partnership' },
 		{ label: 'Legality', href: '#legality' },
-		{ label: 'Contact', href: '#contact' }
+		{ label: 'Contact', href: '/contact' }
 	];
 </script>
 

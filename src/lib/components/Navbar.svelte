@@ -30,7 +30,7 @@
 			{ label: 'ESG', href: '#esg' },
 			{ label: 'LEGALITY', href: '#legality' },
 			{ label: 'NEWS', href: '#news' },
-			{ label: 'CONTACT', href: '#contact' }
+			{ label: 'CONTACT', href: '/contact' }
 		],
 		onCtaClick
 	}: Props = $props();
