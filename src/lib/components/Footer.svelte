@@ -17,17 +17,17 @@
 
 	const navCol1 = [
 		{ label: 'Home', href: '/' },
-		{ label: 'Our Business', href: '#our-business' },
-		{ label: 'Projects', href: '#projects' },
-		{ label: 'ESG', href: '#esg' },
-		{ label: 'News', href: '#news' }
+		{ label: 'Our Business', href: '/our-business' },
+		{ label: 'Projects', href: '/projects' },
+		{ label: 'ESG', href: '/esg' },
+		{ label: 'News', href: '/news' }
 	];
 
 	const navCol2 = [
 		{ label: 'About Us', href: '/about' },
-		{ label: 'Services', href: '#services' },
-		{ label: 'Partnership', href: '#partnership' },
-		{ label: 'Legality', href: '#legality' },
+		{ label: 'Services', href: '/services' },
+		{ label: 'Partnership', href: '/partnership' },
+		{ label: 'Legality', href: '/legality' },
 		{ label: 'Contact', href: '/contact' }
 	];
 </script>

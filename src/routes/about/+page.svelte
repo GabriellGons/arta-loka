@@ -393,7 +393,6 @@
   }
 
   .overview-badge,
-  .vm-badge,
   .journey-badge {
     font-family: var(--font-main);
     font-size: 12.5px;
@@ -406,7 +405,6 @@
   }
 
   .overview-badge-bar,
-  .vm-badge-bar,
   .journey-badge-bar {
     width: 44px;
     height: 3px;
@@ -508,7 +506,7 @@
 	   Vision & Mission (Light Gray)
 	   =========================================================== */
   .vm-section {
-    background: linear-gradient(135deg, #0b1a30 0%, #081326 100%);
+    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 60%, #0a1e36 100%);
     color: #ffffff;
     min-height: 100vh;
     padding: 60px 40px;
@@ -721,7 +719,7 @@
 	   Organization Structure
 	   =========================================================== */
   .organization-section {
-    background: linear-gradient(135deg, #0b1a30 0%, #081326 100%);
+    background: #06182c;
     color: #ffffff;
     padding: 60px 40px;
     box-sizing: border-box;
@@ -1027,11 +1025,6 @@
   }
 
   @media (max-width: 900px) {
-    .vm-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
     .timeline {
       grid-template-columns: repeat(2, 1fr);
     }
