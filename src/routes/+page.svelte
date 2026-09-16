@@ -649,7 +649,7 @@
 	   Our Business Section (Dark Luxury Corporate Theme)
 	   ========================================================================== */
 	.business-section {
-		background-color: #06182c;
+		background-color: #0d2a4d;
 		color: #ffffff;
 		padding: clamp(80px, 9vw, 120px) 0 clamp(72px, 8vw, 110px) 0;
 		position: relative;

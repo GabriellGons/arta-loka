@@ -719,7 +719,7 @@
 	   Organization Structure
 	   =========================================================== */
   .organization-section {
-    background: #06182c;
+    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 60%, #0a1e36 100%);
     color: #ffffff;
     padding: 60px 40px;
     box-sizing: border-box;
