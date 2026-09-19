@@ -1,1167 +1,3164 @@
 <script lang="ts">
-	import { Hero } from '$lib';
-	import strategyMeetingImg from '$lib/assets/strategy-meeting.jpg';
+  import { Hero } from "$lib";
+  import strategyMeetingImg from "$lib/assets/strategy-meeting.jpg";
 
-	let hoveredPillarIndex = $state<number | null>(null);
+  let hoveredPillarIndex = $state<number | null>(null);
 
-	const pillars = [
-		{
-			number: '01',
-			title: 'Asset',
-			description: 'Identifikasi potensi dan optimalisasi nilai aset secara terukur.'
-		},
-		{
-			number: '02',
-			title: 'Strategy',
-			description: 'Penyusunan peta jalan strategis berdaya saing tinggi.'
-		},
-		{
-			number: '03',
-			title: 'Partnership',
-			description: 'Kolaborasi sinergis antar pemangku kepentingan dan mitra industri.'
-		},
-		{
-			number: '04',
-			title: 'Development',
-			description: 'Transformasi aset menjadi pusat pertumbuhan ekonomi produktif.'
-		},
-		{
-			number: '05',
-			title: 'Sustainable Value',
-			description: 'Menjaga nilai ekonomi dan keberlanjutan jangka panjang.'
-		}
-	];
+  const pillars = [
+    {
+      number: "01",
+      title: "Asset",
+      description:
+        "Identifikasi potensi dan optimalisasi nilai aset secara terukur.",
+    },
+    {
+      number: "02",
+      title: "Strategy",
+      description: "Penyusunan peta jalan strategis berdaya saing tinggi.",
+    },
+    {
+      number: "03",
+      title: "Partnership",
+      description:
+        "Kolaborasi sinergis antar pemangku kepentingan dan mitra industri.",
+    },
+    {
+      number: "04",
+      title: "Development",
+      description:
+        "Transformasi aset menjadi pusat pertumbuhan ekonomi produktif.",
+    },
+    {
+      number: "05",
+      title: "Sustainable Value",
+      description: "Menjaga nilai ekonomi dan keberlanjutan jangka panjang.",
+    },
+  ];
 
-	const businessSectors = [
-		{
-			number: '01',
-			title: 'Strategy Development',
-			desc: 'Menyusun arah, model bisnis, dan roadmap pengembangan yang terukur.',
-			icon: 'strategy'
-		},
-		{
-			number: '02',
-			title: 'Asset Management',
-			desc: 'Mengoptimalkan aset fisik, bisnis, sumber daya, dan akses pasar.',
-			icon: 'asset'
-		},
-		{
-			number: '03',
-			title: 'Energy & Sustainability',
-			desc: 'PLTS, BESS, efisiensi energi, dan sistem energi berkelanjutan.',
-			icon: 'energy'
-		},
-		{
-			number: '04',
-			title: 'Digital & Security',
-			desc: 'Infrastruktur digital, AI surveillance, IoT, dan command center.',
-			icon: 'digital'
-		},
-		{
-			number: '05',
-			title: 'Maritime Development',
-			desc: 'Ekosistem pesisir, cold chain, logistik, dan elektrifikasi pulau.',
-			icon: 'maritime'
-		},
-		{
-			number: '06',
-			title: 'Agriculture & Food',
-			desc: 'Supply chain, pengolahan, distribusi, dan perluasan pasar pangan.',
-			icon: 'agriculture'
-		},
-		{
-			number: '07',
-			title: 'Industry & Environment',
-			desc: 'Optimalisasi industri, pengolahan air, limbah, dan utilitas.',
-			icon: 'industry'
-		},
-		{
-			number: '08',
-			title: 'Property & Regional',
-			desc: 'Masterplan, investasi, operasi, dan aktivasi pasar kawasan.',
-			icon: 'property'
-		}
-	];
+  const businessSectors = [
+    {
+      number: "01",
+      title: "Strategy Development",
+      desc: "Menyusun arah, model bisnis, dan roadmap pengembangan yang terukur.",
+      icon: "strategy",
+    },
+    {
+      number: "02",
+      title: "Asset Management",
+      desc: "Mengoptimalkan aset fisik, bisnis, sumber daya, dan akses pasar.",
+      icon: "asset",
+    },
+    {
+      number: "03",
+      title: "Energy & Sustainability",
+      desc: "PLTS, BESS, efisiensi energi, dan sistem energi berkelanjutan.",
+      icon: "energy",
+    },
+    {
+      number: "04",
+      title: "Digital & Security",
+      desc: "Infrastruktur digital, AI surveillance, IoT, dan command center.",
+      icon: "digital",
+    },
+    {
+      number: "05",
+      title: "Maritime Development",
+      desc: "Ekosistem pesisir, cold chain, logistik, dan elektrifikasi pulau.",
+      icon: "maritime",
+    },
+    {
+      number: "06",
+      title: "Agriculture & Food",
+      desc: "Supply chain, pengolahan, distribusi, dan perluasan pasar pangan.",
+      icon: "agriculture",
+    },
+    {
+      number: "07",
+      title: "Industry & Environment",
+      desc: "Optimalisasi industri, pengolahan air, limbah, dan utilitas.",
+      icon: "industry",
+    },
+    {
+      number: "08",
+      title: "Property & Regional",
+      desc: "Masterplan, investasi, operasi, dan aktivasi pasar kawasan.",
+      icon: "property",
+    },
+  ];
 
-	const developmentCycles = [
-		{
-			number: '01',
-			title: 'Identify',
-			desc: 'Mengenali potensi, karakter dan persoalan pada aset atau peluang yang ada.'
-		},
-		{
-			number: '02',
-			title: 'Analyze',
-			desc: 'Menganalisis kelayakan, risiko, dan peluang secara teknis, finansial, dan regulatif.'
-		},
-		{
-			number: '03',
-			title: 'Design',
-			desc: 'Merancang model bisnis, konsep pengembangan, dan roadmap implementasi yang terukur.'
-		},
-		{
-			number: '04',
-			title: 'Connect',
-			desc: 'Membangun kemitraan strategis, ekosistem pendukung, dan jaringan pemangku kepentingan.'
-		},
-		{
-			number: '05',
-			title: 'Develop',
-			desc: 'Mengeksekusi rencana pengembangan aset dan bisnis secara terstruktur dan bertahap.'
-		},
-		{
-			number: '06',
-			title: 'Manage',
-			desc: 'Mengelola operasional, kinerja, dan tata kelola aset yang sedang berjalan.'
-		},
-		{
-			number: '07',
-			title: 'Scale',
-			desc: 'Memperluas skala bisnis, replikasi model, dan ekspansi ke pasar yang lebih luas.'
-		}
-	];
+  const developmentCycles = [
+    {
+      number: "01",
+      title: "Identify",
+      desc: "Mengenali potensi, karakter dan persoalan pada aset atau peluang yang ada.",
+    },
+    {
+      number: "02",
+      title: "Analyze",
+      desc: "Menganalisis kelayakan, risiko, dan peluang secara teknis, finansial, dan regulatif.",
+    },
+    {
+      number: "03",
+      title: "Design",
+      desc: "Merancang model bisnis, konsep pengembangan, dan roadmap implementasi yang terukur.",
+    },
+    {
+      number: "04",
+      title: "Connect",
+      desc: "Membangun kemitraan strategis, ekosistem pendukung, dan jaringan pemangku kepentingan.",
+    },
+    {
+      number: "05",
+      title: "Develop",
+      desc: "Mengeksekusi rencana pengembangan aset dan bisnis secara terstruktur dan bertahap.",
+    },
+    {
+      number: "06",
+      title: "Manage",
+      desc: "Mengelola operasional, kinerja, dan tata kelola aset yang sedang berjalan.",
+    },
+    {
+      number: "07",
+      title: "Scale",
+      desc: "Memperluas skala bisnis, replikasi model, dan ekspansi ke pasar yang lebih luas.",
+    },
+  ];
 
-	let openCycleIndex = $state<number | null>(null);
+  let openCycleIndex = $state<number | null>(null);
+
+  interface EcosystemNode {
+    number: string;
+    id: string;
+    name: string;
+    headline: string;
+    description: string;
+    points: string[];
+  }
+
+  let activeNodeId = $state("asset-owner");
+
+  // Data 6 Simpul Ekosistem
+  const ecosystemNodes: EcosystemNode[] = [
+    {
+      number: "01",
+      id: "asset-owner",
+      name: "Asset Owner",
+      headline: "Pemilik Aset & Sumber Daya",
+      description:
+        "Pemilik aset fisik, lahan, sumber daya alam dan aset usaha yang belum optimal dalam penciptaan nilai ekonomi.",
+      points: [
+        "Optimalisasi lahan dan properti menganggur",
+        "Penyusunan model bisnis dan nilai komersial",
+        "Kemitraan strategis jangka panjang",
+      ],
+    },
+    {
+      number: "02",
+      id: "government",
+      name: "Government",
+      headline: "Regulator & Mitra Kawasan",
+      description:
+        "Pemerintah daerah, BUMN/BUMD dan instansi sebagai regulator serta mitra pengembang kawasan strategis.",
+      points: [
+        "Penyelarasan kebijakan dan perizinan kawasan",
+        "Sinergi pembangunan infrastruktur daerah",
+        "Kemitraan publik-swasta (KPBU) yang transparan",
+      ],
+    },
+    {
+      number: "03",
+      id: "investor",
+      name: "Investor",
+      headline: "Pembiayaan & Penanaman Modal",
+      description:
+        "Mitra pembiayaan proyek, equity participation dan penyedia struktur investasi yang sehat serta terukur.",
+      points: [
+        "Strukturasi investasi yang layak dan teruji",
+        "Manajemen risiko dan kepatuhan hukum",
+        "Imbal hasil yang berkelanjutan (recurring income)",
+      ],
+    },
+    {
+      number: "04",
+      id: "technology",
+      name: "Technology",
+      headline: "Penyedia Inovasi & Sistem",
+      description:
+        "Mitra penyedia teknologi energi terbarukan, infrastruktur digital, AI surveillance dan otomatisasi industri.",
+      points: [
+        "Integrasi IoT dan sistem monitoring real-time",
+        "Penerapan teknologi efisiensi energi (PLTS/BESS)",
+        "Digitalisasi manajemen aset dan operasional",
+      ],
+    },
+    {
+      number: "05",
+      id: "community",
+      name: "Community",
+      headline: "Pelaku Ekonomi Lokal",
+      description:
+        "Masyarakat, koperasi dan UMKM sekitar kawasan sebagai penggerak utama kegiatan ekonomi produktif.",
+      points: [
+        "Penyerapan dan pelatihan tenaga kerja lokal",
+        "Pemberdayaan ekonomi berbasis koperasi",
+        "Peningkatan dampak sosial (social impact)",
+      ],
+    },
+    {
+      number: "06",
+      id: "market",
+      name: "Market",
+      headline: "Akses Pasar & Offtaker",
+      description:
+        "Kanal distribusi, pembeli siaga (offtaker) dan akses pasar yang menjamin penyerapan hasil proyek.",
+      points: [
+        "Konektivitas rantai pasok industri dan komersial",
+        "Kepastian penyerapan komoditas/energi",
+        "Ekspansi jaringan distribusi regional",
+      ],
+    },
+  ];
+
+  // Mengambil node aktif menggunakan rune $derived
+  let activeNode = $derived(
+    ecosystemNodes.find((node) => node.id === activeNodeId) ||
+      ecosystemNodes[0],
+  );
+
+  interface PartnerTrack {
+    title: string;
+    description: string;
+  }
+
+  // Data 5 Kartu Strategic Partnership
+  const partnerTracks: PartnerTrack[] = [
+    {
+      title: "Have an Asset?",
+      description:
+        "Kami bantu membaca potensinya, merancang strategi, dan menyusun model pengembangan.",
+    },
+    {
+      title: "Have Technology?",
+      description:
+        "Kami hubungkan solusi Anda dengan proyek dan kawasan terpadu yang membutuhkan.",
+    },
+    {
+      title: "Have Capital?",
+      description:
+        "Kami siapkan struktur proyek yang layak, transparan, terukur, dan berkelanjutan.",
+    },
+    {
+      title: "Have a Market?",
+      description:
+        "Kami integrasikan pasokan komoditas, energi, dan jasa dari proyek pengembangan kami.",
+    },
+    {
+      title: "Have a Strategic Project?",
+      description:
+        "Kami dampingi dari penyusunan konsep, eksekusi komersial, hingga implementasi lapangan.",
+    },
+  ];
+
+  interface PortfolioItem {
+    number: string;
+    id: string;
+    title: string;
+    overview: string;
+    solution: string;
+    impact: string;
+  }
+
+  // State Poin Aktif (Default: 'energy')
+  let activeId = $state("energy");
+
+  // Data 6 Kategori Portofolio
+  const portfolios: PortfolioItem[] = [
+    {
+      number: "01",
+      id: "energy",
+      title: "Energy",
+      overview:
+        "Pengembangan PLTS, BESS dan independent energy system untuk kawasan serta industri.",
+      solution:
+        "Desain sistem energi hybrid dengan skema pembiayaan dan operasi jangka panjang.",
+      impact:
+        "Penurunan biaya energi, keandalan pasokan dan pengurangan emisi.",
+    },
+    {
+      number: "02",
+      id: "maritime",
+      title: "Maritime",
+      overview:
+        "Modernisasi fasilitas pelabuhan, rantai dingin (cold storage), dan logistik maritim.",
+      solution:
+        "Pembangunan rantai dingin terintegrasi dengan jaringan logistik lokal dan regional.",
+      impact:
+        "Peningkatan kualitas hasil tangkapan dan kesejahteraan komunitas pesisir.",
+    },
+    {
+      number: "03",
+      id: "industrial",
+      title: "Industrial",
+      overview:
+        "Pengembangan kawasan industri hijau bernilai tambah dan siap huni.",
+      solution:
+        "Integrasi utilitas bersama dan otomatisasi manajemen fasilitas terpusat.",
+      impact: "Efisiensi biaya operasional tenant dan daya saing kawasan.",
+    },
+    {
+      number: "04",
+      id: "digital-security",
+      title: "Digital & Security",
+      overview:
+        "Pembangunan infrastruktur digital, sensor pintar, dan kedaulatan data kawasan.",
+      solution:
+        "Penerapan jaringan privat terenkripsi dan dashboard monitoring terpusat.",
+      impact:
+        "Transparansi data real-time dan peningkatan keandalan sistem keamanan.",
+    },
+    {
+      number: "05",
+      id: "agriculture",
+      title: "Agriculture",
+      overview:
+        "Pengembangan kawasan agribisnis dan akuakultur presisi berkelanjutan.",
+      solution:
+        "Implementasi sensor tanah/air dan skema off-taker langsung ke industri.",
+      impact:
+        "Peningkatan produktivitas panen dan stabilitas pendapatan petani.",
+    },
+    {
+      number: "06",
+      id: "environment",
+      title: "Environment",
+      overview:
+        "Proyek konservasi, pengolahan air limbah, dan penataan ruang hijau.",
+      solution:
+        "Penerapan konsep circular economy dan fasilitas daur ulang terpadu.",
+      impact: "Pemulihan kualitas lingkungan dan penciptaan green jobs.",
+    },
+  ];
+
+  // Mengambil item portofolio aktif menggunakan rune $derived
+  let activeItem = $derived(
+    portfolios.find((item) => item.id === activeId) || portfolios[0],
+  );
+
+  interface EsgPillar {
+    id: string;
+    number: string;
+    title: string;
+    desc: string;
+  }
+
+  // State untuk menyimpan pillar mana yang sedang aktif/terbuka (default: null = semua tertutup)
+  let activeEsg = $state<string | null>(null);
+
+  function toggleEsg(id: string) {
+    activeEsg = activeEsg === id ? null : id;
+  }
+
+  // Data ESG Pillars lengkap dengan deskripsi
+  const esgPillars: EsgPillar[] = [
+    {
+      id: "profit",
+      number: "01",
+      title: "Profit",
+      desc: "Menciptakan nilai ekonomi yang berkelanjutan dan pertumbuhan pendapatan berulang bagi seluruh pemangku kepentingan.",
+    },
+    {
+      id: "people",
+      number: "02",
+      title: "People",
+      desc: "Memberdayakan masyarakat lokal, meningkatkan keterampilan sumber daya manusia, dan menciptakan lingkungan kerja inklusif.",
+    },
+    {
+      id: "planet",
+      number: "03",
+      title: "Planet",
+      desc: "Menerapkan teknologi ramah lingkungan, efisiensi energi terbarukan, dan prinsip circular economy untuk menekan emisi.",
+    },
+    {
+      id: "partnership",
+      number: "04",
+      title: "Partnership",
+      desc: "Membangun sinergi transparan dan jangka panjang antara pemilik aset, pemerintah, investor, dan mitra teknologi.",
+    },
+  ];
+
+  interface JourneyMilestone {
+    year: string;
+    title: string;
+    description: string;
+  }
+
+  // State Tahun Aktif (Default: '2020')
+  let activeYear = $state("2020");
+
+  // Data Perjalanan Perusahaan (2020 - 2026)
+  const journeyMilestones: JourneyMilestone[] = [
+    {
+      year: "2020",
+      title: "Foundation",
+      description:
+        "Fondasi perusahaan dan pembangunan jejaring usaha serta peluang pengembangan aset.",
+    },
+    {
+      year: "2021",
+      title: "Early Expansion",
+      description:
+        "Inisiasi proyek awal dan pemetaan potensi aset strategis di berbagai daerah.",
+    },
+    {
+      year: "2022",
+      title: "Ecosystem Building",
+      description:
+        "Menghubungkan pemilik aset, teknologi, investor, dan pemerintah dalam satu ekosistem.",
+    },
+    {
+      year: "2023",
+      title: "Multi-Sector Integration",
+      description:
+        "Penetrasi lini bisnis energi terbarukan, teknologi digital, dan maritim.",
+    },
+    {
+      year: "2024",
+      title: "Strategic Scaling",
+      description:
+        "Pengembangan kawasan terpadu dan perluasan skema kemitraan komersial.",
+    },
+    {
+      year: "2025",
+      title: "Sustainable Impact",
+      description:
+        "Penguatan prinsip ESG, efisiensi operasional, dan pertumbuhan recurring income.",
+    },
+    {
+      year: "2026",
+      title: "Future Vision",
+      description:
+        "Akselerasi ekosistem bisnis terintegrasi dan replikasi model kemitraan lintas daerah.",
+    },
+  ];
+
+  // Mengambil data milestone aktif menggunakan rune $derived
+  let activeMilestone = $derived(
+    journeyMilestones.find((m) => m.year === activeYear) ||
+      journeyMilestones[0],
+  );
+
+  interface Leader {
+    name: string;
+    role?: string;
+  }
+
+  interface LegalDoc {
+    id: string;
+    number: string;
+    title: string;
+    description: string;
+  }
+
+  // Data Leadership Team
+  const leadershipTeam: Leader[] = [
+    { name: "Grace Diana Hariadinata", role: "Commissioner" },
+    { name: "Dodik Kurniawan", role: "Director" },
+    { name: "Dodiet Herry Kiswanto", role: "Head of Operation" },
+    { name: "Hari Utomo", role: "Operational Staff" },
+  ];
+
+  // State Dokumen Legality Terbuka (Default: '01')
+  let activeLegalId = $state("01");
+
+  // Data Corporate Legality
+  const legalDocs: LegalDoc[] = [
+    {
+      id: "01",
+      number: "01",
+      title: "Akta Pendirian",
+      description: "Dokumen pendirian perseroan beserta perubahan terakhir.",
+    },
+    {
+      id: "02",
+      number: "02",
+      title: "SK Kemenkumham",
+      description: "Surat keputusan pengesahan badan hukum perseroan terbatas.",
+    },
+    {
+      id: "03",
+      number: "03",
+      title: "NIB",
+      description: "Nomor Induk Berusaha sebagai identitas resmi pelaku usaha.",
+    },
+    {
+      id: "04",
+      number: "04",
+      title: "NPWP",
+      description: "Nomor Pokok Wajib Pajak perseroan terdaftar.",
+    },
+    {
+      id: "05",
+      number: "05",
+      title: "KBLI / Bidang Usaha",
+      description:
+        "Klasifikasi Baku Lapangan Usaha Indonesia sesuai aktivitas bisnis.",
+    },
+    {
+      id: "06",
+      number: "06",
+      title: "Sertifikat Standar / Izin Usaha",
+      description:
+        "Perizinan berusaha berbasis risiko yang telah terverifikasi.",
+    },
+  ];
+
+  function toggleLegal(id: string) {
+    activeLegalId = activeLegalId === id ? "" : id;
+  }
+
+  interface NewsCategory {
+    number: string;
+    title: string;
+    description: string;
+    slug: string;
+  }
+
+  // Data 6 Kategori News & Insight beserta Deskripsinya
+  const newsCategories: NewsCategory[] = [
+    {
+      number: "01",
+      title: "Corporate News",
+      description:
+        "Pengumuman resmi, kemitraan strategis, dan perkembangan internal perusahaan.",
+      slug: "corporate-news",
+    },
+    {
+      number: "02",
+      title: "Project Update",
+      description:
+        "Progres pelaksanaan proyek di lapangan dan pencapaian milestone kawasan.",
+      slug: "project-update",
+    },
+    {
+      number: "03",
+      title: "Energy & Technology",
+      description:
+        "Inovasi energi terbarukan, sistem PLTS, BESS, dan integrasi teknologi digital.",
+      slug: "energy-technology",
+    },
+    {
+      number: "04",
+      title: "Maritime Development",
+      description:
+        "Pengembangan infrastruktur pesisir, rantai dingin, dan logistik kelautan.",
+      slug: "maritime-development",
+    },
+    {
+      number: "05",
+      title: "Asset & Investment",
+      description:
+        "Analisis kelayakan, optimalisasi aset fisik, dan strukturasi pembiayaan.",
+      slug: "asset-investment",
+    },
+    {
+      number: "06",
+      title: "Community Development",
+      description:
+        "Pemberdayaan ekonomi masyarakat lokal, koperasi, dan program dampak sosial.",
+      slug: "community-development",
+    },
+  ];
 </script>
 
 <svelte:head>
-	<title>PT Arta Loka Wisala — Strategy Development & Asset Management Partner</title>
-	<meta
-		name="description"
-		content="PT Arta Loka Wisala menghubungkan aset, strategi, teknologi, modal, jaringan, dan pasar untuk membangun proyek serta ekosistem bisnis yang produktif dan berkelanjutan."
-	/>
+  <title
+    >PT Arta Loka Wisala — Strategy Development & Asset Management Partner</title
+  >
+  <meta
+    name="description"
+    content="PT Arta Loka Wisala menghubungkan aset, strategi, teknologi, modal, jaringan, dan pasar untuk membangun proyek serta ekosistem bisnis yang produktif dan berkelanjutan."
+  />
 </svelte:head>
 
 <!-- Hero Section with arta-loka-hero.jpg -->
 <Hero />
 
 <!-- About Us / Who We Are Section -->
-<section id="about-us" class="about-section" aria-label="About PT Arta Loka Wisala">
-	<div class="about-container">
-		<!-- Top Row: Editorial Content & Strategy Meeting Image -->
-		<div class="about-main-grid">
-			<!-- Left Column: Copywriting -->
-			<div class="about-content">
-				<div class="tagline-wrapper">
-					<span class="about-tagline">WHO WE ARE</span>
-					<span class="tagline-bar" aria-hidden="true"></span>
-				</div>
+<section
+  id="about-us"
+  class="section-light"
+  aria-label="About PT Arta Loka Wisala"
+>
+  <div class="container">
+    <!-- Top Row: Editorial Content & Strategy Meeting Image -->
+    <div class="about-main-grid">
+      <!-- Left Column: Copywriting -->
+      <div class="about-content">
+        <div class="tagline-wrapper">
+          <span class="tagline">WHO WE ARE</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
 
-				<h2 class="about-headline">
-					More than an<br />
-					asset manager.<br />
-					We are a strategic<br />
-					development partner.
-				</h2>
+        <h2 class="title-dark">
+          More than an<br />
+          asset manager.<br />
+          We are a strategic<br />
+          development partner.
+        </h2>
 
-				<p class="about-description">
-					PT Arta Loka Wisala membantu pemilik aset, perusahaan, investor, pemerintah, BUMN/BUMD, koperasi dan mitra strategis dalam mengidentifikasi potensi, menyusun strategi, membangun kemitraan serta mengembangkan aset menjadi kegiatan ekonomi produktif.
-				</p>
+        <p class="desc-dark">
+          PT Arta Loka Wisala membantu pemilik aset, perusahaan, investor,
+          pemerintah, BUMN/BUMD, koperasi dan mitra strategis dalam
+          mengidentifikasi potensi, menyusun strategi, membangun kemitraan serta
+          mengembangkan aset menjadi kegiatan ekonomi produktif.
+        </p>
 
-				<div class="about-cta-wrapper">
-					<a href="#about-us" class="btn-about">
-						<span>ABOUT US</span>
-						<svg
-							class="arrow-icon"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							aria-hidden="true"
-						>
-							<line x1="5" y1="12" x2="19" y2="12"></line>
-							<polyline points="12 5 19 12 12 19"></polyline>
-						</svg>
-					</a>
-				</div>
-			</div>
+        <div class="">
+          <a href="/about" class="button-light">
+            <span>ABOUT US</span>
+            <svg
+              class="button-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
 
-			<!-- Right Column: Image only -->
-			<div class="about-media">
-				<div class="image-frame">
-					<img
-						src={strategyMeetingImg}
-						alt="PT Arta Loka Wisala Strategy & Asset Development Team"
-						class="meeting-image"
-						loading="lazy"
-					/>
-				</div>
-			</div>
-		</div>
+      <!-- Right Column: Image only -->
+      <div class="about-media">
+        <div class="image-frame">
+          <img
+            src={strategyMeetingImg}
+            alt="PT Arta Loka Wisala Strategy & Asset Development Team"
+            class="meeting-image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
 
-		<!-- Bottom Row: 5 Strategic Pillars Strip -->
-		<div
-			class="pillars-container"
-			role="region"
-			aria-label="Strategic Pillars"
-			onmouseleave={() => (hoveredPillarIndex = null)}
-		>
-			<div class="pillars-grid">
-				{#each pillars as pillar, index}
-					{@const isHovered = hoveredPillarIndex === index}
-					<div
-						class="pillar-item"
-						class:active={isHovered}
-						onmouseenter={() => (hoveredPillarIndex = index)}
-						onmouseleave={() => (hoveredPillarIndex = null)}
-						onfocus={() => (hoveredPillarIndex = index)}
-						onblur={() => (hoveredPillarIndex = null)}
-						onclick={() => (hoveredPillarIndex = hoveredPillarIndex === index ? null : index)}
-						onkeydown={(e) => {
-							if (e.key === 'Enter' || e.key === ' ') {
-								hoveredPillarIndex = hoveredPillarIndex === index ? null : index;
-							}
-						}}
-						role="button"
-						tabindex="0"
-						aria-pressed={isHovered}
-					>
-						<div class="pillar-inner">
-							<span class="pillar-number">{pillar.number}</span>
-							<h3 class="pillar-title">{pillar.title}</h3>
-							<div class="pillar-accent-line" aria-hidden="true"></div>
-							<p class="pillar-desc" class:visible={isHovered}>
-								{pillar.description}
-							</p>
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</div>
+    <!-- Bottom Row: 5 Strategic Pillars Strip -->
+    <div
+      class="pillars-container"
+      role="region"
+      aria-label="Strategic Pillars"
+      onmouseleave={() => (hoveredPillarIndex = null)}
+    >
+      <div class="pillars-grid">
+        {#each pillars as pillar, index}
+          {@const isHovered = hoveredPillarIndex === index}
+          <div
+            class="pillar-item"
+            class:active={isHovered}
+            onmouseenter={() => (hoveredPillarIndex = index)}
+            onmouseleave={() => (hoveredPillarIndex = null)}
+            onfocus={() => (hoveredPillarIndex = index)}
+            onblur={() => (hoveredPillarIndex = null)}
+            onclick={() =>
+              (hoveredPillarIndex =
+                hoveredPillarIndex === index ? null : index)}
+            onkeydown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                hoveredPillarIndex =
+                  hoveredPillarIndex === index ? null : index;
+              }
+            }}
+            role="button"
+            tabindex="0"
+            aria-pressed={isHovered}
+          >
+            <div class="pillar-inner">
+              <span class="pillar-number">{pillar.number}</span>
+              <h3 class="pillar-title">{pillar.title}</h3>
+              <div class="pillar-accent-line" aria-hidden="true"></div>
+              <p class="pillar-desc" class:visible={isHovered}>
+                {pillar.description}
+              </p>
+            </div>
+          </div>
+        {/each}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Business Ecosystem -->
+<section class="section-dark" aria-label="Our Business Ecosystem">
+  <div class="container">
+    <!-- Badge & Header -->
+    <div class="eco-intro">
+      <div class="tagline-wrapper">
+        <span class="tagline">OUR BUSINESS ECOSYSTEM</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-light">We connect the ecosystem.</h2>
+      <p class="desc-light">
+        Sentuh setiap simpul untuk melihat perannya. PT Arta Loka Wisala
+        berfungsi sebagai Strategic Integrator yang mempertemukan pemilik aset,
+        pemerintah, investor, teknologi, masyarakat dan pasar.
+      </p>
+    </div>
+
+    <!-- Content Grid (Master-Detail) -->
+    <div class="eco-content">
+      <!-- KOLOM KIRI: LIST SIMPUL (VERTICAL TABS) -->
+      <div class="nodes-list" role="tablist">
+        {#each ecosystemNodes as node}
+          <button
+            type="button"
+            role="tab"
+            class="node-btn"
+            class:is-active={activeNodeId === node.id}
+            aria-selected={activeNodeId === node.id}
+            onclick={() => (activeNodeId = node.id)}
+          >
+            <span class="node-number">{node.number}</span>
+            <span class="node-name">{node.name}</span>
+
+            <!-- Aksen Garis Emas Sesuai Gambar Rujukan -->
+            {#if activeNodeId === node.id}
+              <div class="active-line" aria-hidden="true"></div>
+            {/if}
+          </button>
+        {/each}
+      </div>
+
+      <!-- KOLOM KANAN: DISPLAY DESKRIPSI (RUANG TERISI PADAT) -->
+      <div class="node-display">
+        <div class="display-header">
+          <span class="node-sublabel">ECOSYSTEM NODE</span>
+          <h3 class="node-title">{activeNode.name}</h3>
+        </div>
+
+        <p class="node-desc">{activeNode.description}</p>
+
+        <!-- Poin-Poin Peran (Mengeliminasi Ruang Kosong) -->
+        <div class="node-highlights">
+          <span class="highlights-label">PERAN &amp; FOKUS UTAMA</span>
+          <ul class="highlights-list">
+            {#each activeNode.points as point}
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="check-icon"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>{point}</span>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/our-business" class="button-dark">
+        <span>LIHAT DETAIL LAYANAN</span>
+        <svg
+          class="button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Our Business / Multi-Sector Development Section -->
-<section id="our-business" class="business-section" aria-label="Our Business Sectors">
-	<div class="business-container">
-		<!-- Header Row: Two columns on desktop -->
-		<div class="business-header">
-			<div class="header-left">
-				<span class="business-badge">02 — OUR BUSINESS SECTORS</span>
-				<h2 class="business-title">
-					Integrated multi-sector<br />development.
-				</h2>
-			</div>
-			<div class="header-right">
-				<p class="business-lead">
-					Kompetensi lintas sektor untuk mengubah peluang menjadi model bisnis yang siap bergerak.
-				</p>
-			</div>
-		</div>
+<section
+  id="our-business"
+  class="section-light"
+  aria-label="Our Business Sectors"
+>
+  <div class="container">
+    <!-- Header Row: Two columns on desktop -->
+    <div class="business-header">
+      <div class="header-left">
+        <div class="tagline-wrapper">
+          <span class="tagline">OUR BUSINESS SECTORS</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-dark">
+          Integrated multi-sector<br />development.
+        </h2>
+      </div>
+      <div class="header-right">
+        <p class="desc-dark">
+          Kompetensi lintas sektor untuk mengubah peluang menjadi model bisnis
+          yang siap bergerak.
+        </p>
+      </div>
+    </div>
 
-		<!-- 8-Card Grid -->
-		<div class="business-grid">
-			{#each businessSectors as sector}
-				<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-				<div class="business-card" tabindex="0">
-					<span class="sector-number">{sector.number}</span>
+    <!-- 8-Card Grid -->
+    <div class="business-grid">
+      {#each businessSectors as sector}
+        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+        <div class="business-card" tabindex="0">
+          <span class="sector-number">{sector.number}</span>
 
-					<div class="sector-icon-wrapper" aria-hidden="true">
-						{#if sector.icon === 'strategy'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<line x1="18" y1="20" x2="18" y2="10"></line>
-								<line x1="12" y1="20" x2="12" y2="4"></line>
-								<line x1="6" y1="20" x2="6" y2="14"></line>
-								<line x1="2" y1="20" x2="22" y2="20"></line>
-							</svg>
-						{:else if sector.icon === 'asset'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<rect x="5" y="3" width="14" height="18" rx="1.5"></rect>
-								<line x1="9" y1="8" x2="10" y2="8"></line>
-								<line x1="14" y1="8" x2="15" y2="8"></line>
-								<line x1="9" y1="12" x2="10" y2="12"></line>
-								<line x1="14" y1="12" x2="15" y2="12"></line>
-								<path d="M10 21v-4h4v4"></path>
-							</svg>
-						{:else if sector.icon === 'energy'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<circle cx="12" cy="12" r="3.5"></circle>
-								<line x1="12" y1="2" x2="12" y2="4.5"></line>
-								<line x1="12" y1="19.5" x2="12" y2="22"></line>
-								<line x1="4.93" y1="4.93" x2="6.7" y2="6.7"></line>
-								<line x1="17.3" y1="17.3" x2="19.07" y2="19.07"></line>
-								<line x1="2" y1="12" x2="4.5" y2="12"></line>
-								<line x1="19.5" y1="12" x2="22" y2="12"></line>
-								<line x1="4.93" y1="19.07" x2="6.7" y2="17.3"></line>
-								<line x1="17.3" y1="6.7" x2="19.07" y2="4.93"></line>
-							</svg>
-						{:else if sector.icon === 'digital'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M4 11a9 9 0 0 1 9-9"></path>
-								<path d="M8 15a9 9 0 0 1 9-9"></path>
-								<path d="M3 21l8-8"></path>
-								<path d="M12 20l7-7-3-3-7 7 3 3z"></path>
-							</svg>
-						{:else if sector.icon === 'maritime'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M2 20c2-1 4-1 6 0s4 1 6 0 4-1 6 0"></path>
-								<path d="M3.5 16.5L5.5 10h13l2 6.5"></path>
-								<path d="M9 10V6h6v4"></path>
-								<line x1="12" y1="3" x2="12" y2="6"></line>
-							</svg>
-						{:else if sector.icon === 'agriculture'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M11 20A7 7 0 0 1 4 13c0-7 7-9 7-9s7 2 7 9a7 7 0 0 1-7 7z"></path>
-								<path d="M11 4v16"></path>
-							</svg>
-						{:else if sector.icon === 'industry'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M2 20h20"></path>
-								<path d="M2 20V10l5 3V10l5 3V5h8v15"></path>
-							</svg>
-						{:else if sector.icon === 'property'}
-							<svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-								<rect x="9" y="3" width="6" height="6" rx="1"></rect>
-								<rect x="3" y="15" width="6" height="6" rx="1"></rect>
-								<rect x="15" y="15" width="6" height="6" rx="1"></rect>
-								<path d="M12 9v3m-6 3v-3h12v3"></path>
-							</svg>
-						{/if}
-					</div>
+          <div class="sector-icon-wrapper" aria-hidden="true">
+            {#if sector.icon === "strategy"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+                <line x1="2" y1="20" x2="22" y2="20"></line>
+              </svg>
+            {:else if sector.icon === "asset"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="5" y="3" width="14" height="18" rx="1.5"></rect>
+                <line x1="9" y1="8" x2="10" y2="8"></line>
+                <line x1="14" y1="8" x2="15" y2="8"></line>
+                <line x1="9" y1="12" x2="10" y2="12"></line>
+                <line x1="14" y1="12" x2="15" y2="12"></line>
+                <path d="M10 21v-4h4v4"></path>
+              </svg>
+            {:else if sector.icon === "energy"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="3.5"></circle>
+                <line x1="12" y1="2" x2="12" y2="4.5"></line>
+                <line x1="12" y1="19.5" x2="12" y2="22"></line>
+                <line x1="4.93" y1="4.93" x2="6.7" y2="6.7"></line>
+                <line x1="17.3" y1="17.3" x2="19.07" y2="19.07"></line>
+                <line x1="2" y1="12" x2="4.5" y2="12"></line>
+                <line x1="19.5" y1="12" x2="22" y2="12"></line>
+                <line x1="4.93" y1="19.07" x2="6.7" y2="17.3"></line>
+                <line x1="17.3" y1="6.7" x2="19.07" y2="4.93"></line>
+              </svg>
+            {:else if sector.icon === "digital"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 11a9 9 0 0 1 9-9"></path>
+                <path d="M8 15a9 9 0 0 1 9-9"></path>
+                <path d="M3 21l8-8"></path>
+                <path d="M12 20l7-7-3-3-7 7 3 3z"></path>
+              </svg>
+            {:else if sector.icon === "maritime"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 20c2-1 4-1 6 0s4 1 6 0 4-1 6 0"></path>
+                <path d="M3.5 16.5L5.5 10h13l2 6.5"></path>
+                <path d="M9 10V6h6v4"></path>
+                <line x1="12" y1="3" x2="12" y2="6"></line>
+              </svg>
+            {:else if sector.icon === "agriculture"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M11 20A7 7 0 0 1 4 13c0-7 7-9 7-9s7 2 7 9a7 7 0 0 1-7 7z"
+                ></path>
+                <path d="M11 4v16"></path>
+              </svg>
+            {:else if sector.icon === "industry"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 20h20"></path>
+                <path d="M2 20V10l5 3V10l5 3V5h8v15"></path>
+              </svg>
+            {:else if sector.icon === "property"}
+              <svg
+                class="sector-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="3" width="6" height="6" rx="1"></rect>
+                <rect x="3" y="15" width="6" height="6" rx="1"></rect>
+                <rect x="15" y="15" width="6" height="6" rx="1"></rect>
+                <path d="M12 9v3m-6 3v-3h12v3"></path>
+              </svg>
+            {/if}
+          </div>
 
-					<h3 class="sector-title">{sector.title}</h3>
-					<p class="sector-desc">{sector.desc}</p>
-				</div>
-			{/each}
-		</div>
-
-		<!-- Bottom CTA Button -->
-		<div class="business-action">
-			<a href="#services" class="btn-services">
-				<span>LIHAT DETAIL LAYANAN</span>
-				<svg
-					class="btn-icon"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.3"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					aria-hidden="true"
-				>
-					<line x1="5" y1="12" x2="19" y2="12"></line>
-					<polyline points="12 5 19 12 12 19"></polyline>
-				</svg>
-			</a>
-		</div>
-	</div>
+          <h3 class="sector-title">{sector.title}</h3>
+          <p class="sector-desc">{sector.desc}</p>
+        </div>
+      {/each}
+    </div>
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/services" class="button-light">
+        <span>LIHAT DETAIL LAYANAN</span>
+        <svg
+          class="button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- Development Cycle Section -->
-<section id="development-cycle" class="cycle-section" aria-label="Development Cycle">
-	<div class="cycle-container">
-		<!-- Header Row -->
-		<div class="cycle-header">
-			<div class="cycle-header-left">
-				<span class="cycle-badge">03 — DEVELOPMENT CYCLE</span>
-				<h2 class="cycle-title">
-					From potential to<br />sustainable business.
-				</h2>
-			</div>
-			<div class="cycle-header-right">
-				<p class="cycle-lead">
-					Metodologi sistematis untuk mengawal peluang dari identifikasi hingga ekspansi.
-				</p>
-			</div>
-		</div>
+<!-- Development Cycle -->
+<section
+  id="development-cycle"
+  class="section-dark"
+  aria-label="Development Cycle"
+>
+  <div class="container">
+    <!-- Header Row -->
+    <div class="cycle-header">
+      <div class="cycle-header-left">
+        <div class="tagline-wrapper">
+          <span class="tagline">DEVELOPMENT CYCLE</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-light">
+          From potential to<br />sustainable business.
+        </h2>
+      </div>
+      <div class="cycle-header-right">
+        <p class="desc-light">
+          Metodologi sistematis untuk mengawal peluang dari identifikasi hingga
+          ekspansi.
+        </p>
+      </div>
+    </div>
 
-		<!-- Accordion Steps Grid -->
-		<div class="cycle-grid">
-			{#each developmentCycles as step, index}
-				{@const isOpen = openCycleIndex === index}
-				<button
-					class="cycle-step"
-					class:open={isOpen}
-					onclick={() => (openCycleIndex = isOpen ? null : index)}
-					aria-expanded={isOpen}
-				>
-					<div class="step-top">
-						<span class="step-number">{step.number}</span>
-						<span class="step-toggle" aria-hidden="true">{isOpen ? '×' : '+'}</span>
-					</div>
-					<div class="step-body">
-						<p class="step-desc" class:step-desc-visible={isOpen}>{step.desc}</p>
-						<h3 class="step-title">{step.title}</h3>
-					</div>
-				</button>
-			{/each}
-		</div>
-	</div>
+    <!-- Accordion Steps Grid -->
+    <div class="cycle-grid">
+      {#each developmentCycles as step, index}
+        {@const isOpen = openCycleIndex === index}
+        <button
+          class="cycle-step"
+          class:open={isOpen}
+          onclick={() => (openCycleIndex = isOpen ? null : index)}
+          aria-expanded={isOpen}
+        >
+          <div class="step-top">
+            <span class="step-number">{step.number}</span>
+            <span class="step-toggle" aria-hidden="true"
+              >{isOpen ? "×" : "+"}</span
+            >
+          </div>
+          <div class="step-body">
+            <p class="step-desc" class:step-desc-visible={isOpen}>
+              {step.desc}
+            </p>
+            <h3 class="step-title">{step.title}</h3>
+          </div>
+        </button>
+      {/each}
+    </div>
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/projects" class="button-dark">
+        <span>LIHAT DETAIL LAYANAN</span>
+        <svg
+          class="button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Strategic Partnership Section -->
+<section class="section-light" aria-label="Strategic Partnership">
+  <div class="container">
+    <!-- Badge & Intro Header -->
+    <div class="partner-intro">
+      <div class="tagline-wrapper">
+        <span class="tagline">STRATEGIC PARTNERSHIP</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">Let's build value together</h2>
+      <p class="desc-dark">
+        Titik temu bagi pemilik aset, penyedia teknologi, pemilik kapital,
+        pemegang pasar dan pengelola proyek strategis.
+      </p>
+    </div>
+
+    <!-- 5-Column Interactive Grid -->
+    <div class="partner-grid">
+      {#each partnerTracks as track}
+        <div class="partner-card">
+          <div class="card-content">
+            <h3 class="card-title">{track.title}</h3>
+            <div class="card-line" aria-hidden="true"></div>
+
+            <!-- Deskripsi Muncul Saat Hover -->
+            <p class="card-desc">{track.description}</p>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/partnership" class="button-light">
+        <span>LIHAT DETAIL LAYANAN</span>
+        <svg
+          class="button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Project & Portfolio Section -->
+<section class="section-dark" aria-label="Project and Portfolio">
+  <div class="container">
+    <!-- Badge & Intro Header -->
+    <div class="portfolio-intro">
+      <div class="tagline-wrapper">
+        <span class="tagline">PROJECT &amp; PORTFOLIO</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-light">Show results, not only services.</h2>
+      <p class="desc-light">
+        Enam kategori portofolio. Pilih satu untuk melihat ringkasan dan
+        dampaknya.
+      </p>
+    </div>
+
+    <!-- Content Grid (Master-Detail) -->
+    <div class="portfolio-content">
+      <!-- KOLOM KIRI: LIST POIN (INTERACTIVE BUTTONS) -->
+      <div class="portfolio-list" role="tablist">
+        {#each portfolios as item}
+          <button
+            type="button"
+            role="tab"
+            class="portfolio-btn"
+            class:is-active={activeId === item.id}
+            aria-selected={activeId === item.id}
+            onclick={() => (activeId = item.id)}
+          >
+            <span class="btn-number">{item.number}</span>
+            <span class="btn-title">{item.title}</span>
+
+            <!-- Indikator Garis Emas Sesuai Gambar -->
+            {#if activeId === item.id}
+              <div class="active-line" aria-hidden="true"></div>
+            {/if}
+          </button>
+        {/each}
+      </div>
+
+      <!-- KOLOM KANAN: DISPLAY DETAIL PORTOFOLIO -->
+      <div class="portfolio-display">
+        <div class="display-header">
+          <span class="display-badge">PORTFOLIO FOCUS</span>
+          <h3 class="display-title">{activeItem.title}</h3>
+        </div>
+
+        <p class="display-overview">{activeItem.overview}</p>
+
+        <!-- Poin Solution & Impact -->
+        <div class="display-specs">
+          <div class="spec-row">
+            <span class="spec-label">SOLUTION</span>
+            <p class="spec-text">{activeItem.solution}</p>
+          </div>
+
+          <div class="spec-row">
+            <span class="spec-label">IMPACT</span>
+            <p class="spec-text">{activeItem.impact}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/partnership" class="button-dark">
+        <span>LIHAT DETAIL LAYANAN</span>
+        <svg
+          class="button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ESG & Corporate Journey Section -->
+<section class="section-light" aria-label="ESG Impact and Corporate Journey">
+  <div class="impact-journey-container">
+    <!-- KOLOM KIRI: ESG & IMPACT -->
+    <div class="impact-col">
+      <div class="section-intro">
+        <div class="tagline-wrapper">
+          <span class="tagline">ESG &amp; IMPACT</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-dark">Business with purpose</h2>
+        <p class="desc-dark">
+          Keseimbangan Profit, People, Planet dan Partnership pada setiap
+          pengembangan.
+        </p>
+      </div>
+
+      <!-- Markup Grid 2x2 ESG Pillars -->
+      <div class="esg-grid">
+        {#each esgPillars as item}
+          <button
+            type="button"
+            class="esg-card"
+            class:is-active={activeEsg === item.id}
+            onclick={() => toggleEsg(item.id)}
+            aria-expanded={activeEsg === item.id}
+          >
+            <div class="esg-card-header">
+              <span class="esg-number">{item.number}</span>
+              <span class="esg-toggle-icon"
+                >{activeEsg === item.id ? "−" : "+"}</span
+              >
+            </div>
+
+            <h3 class="esg-card-title">{item.title}</h3>
+            <div class="esg-card-line" aria-hidden="true"></div>
+
+            <!-- Deskripsi hanya muncul ketika aktif -->
+            {#if activeEsg === item.id}
+              <p class="esg-card-desc">{item.desc}</p>
+            {/if}
+          </button>
+        {/each}
+      </div>
+
+      <!-- Bottom CTA Button -->
+      <div class="esg-action">
+        <a href="/esg" class="button-light">
+          <span>ESG DETAIL</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- KOLOM KANAN: CORPORATE JOURNEY -->
+    <div class="journey-col">
+      <div class="section-intro">
+        <div class="tagline-wrapper">
+          <span class="section-badge">CORPORATE JOURNEY</span>
+          <span class="section-badge-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-dark">Our journey 2020 — 2026</h2>
+        <p class="desc-dark">
+          Sentuh setiap tahun untuk membaca babak perjalanan perusahaan.
+        </p>
+      </div>
+
+      <!-- Interactive Timeline Component -->
+      <div class="timeline-wrapper">
+        <div class="timeline-track">
+          {#each journeyMilestones as item}
+            <button
+              type="button"
+              class="timeline-node"
+              class:is-active={activeYear === item.year}
+              onclick={() => (activeYear = item.year)}
+            >
+              <span class="timeline-year">{item.year}</span>
+              <div class="timeline-connector">
+                <div class="timeline-line"></div>
+                <div class="timeline-diamond"></div>
+              </div>
+            </button>
+          {/each}
+          <div class="timeline-base-line" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Milestone Detail Display -->
+      <div class="milestone-display">
+        <span class="milestone-year-badge">{activeMilestone.year}</span>
+        <h3 class="milestone-title">{activeMilestone.title}</h3>
+        <p class="milestone-desc">{activeMilestone.description}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Management & Corporate Legality Section -->
+<section class="section-dark" aria-label="Management and Legality">
+  <div class="container">
+    <!-- BAGIAN 1 (ATAS): MANAGEMENT / LEADERSHIP TEAM -->
+    <div class="management-block">
+      <div class="section-intro">
+        <div class="tagline-wrapper">
+          <span class="tagline">MANAGEMENT</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-light">Leadership team</h2>
+      </div>
+
+      <!-- Grid 2x2 Leadership Cards -->
+      <div class="leadership-grid">
+        {#each leadershipTeam as person}
+          <div class="leader-card">
+            <div class="leader-info">
+              <h3 class="leader-name">{person.name}</h3>
+              <p class="leader-role">{person.role}</p>
+            </div>
+            <div class="leader-card-line" aria-hidden="true"></div>
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    <!-- SEPARATOR LINE -->
+    <div class="vertical-divider" aria-hidden="true"></div>
+
+    <!-- BAGIAN 2 (BAWAH): CORPORATE LEGALITY -->
+    <div class="legality-block">
+      <div class="section-intro">
+        <div class="tagline-wrapper">
+          <span class="tagline">CORPORATE LEGALITY</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-light">Trust ▪ Compliance ▪ Accountability</h2>
+        <p class="desc-light">
+          Status verifikasi ditampilkan ringkas; dokumen lengkap melalui due
+          diligence.
+        </p>
+      </div>
+
+      <!-- Vertical Accordion List Legal Docs -->
+      <div class="legality-list">
+        {#each legalDocs as doc}
+          <button
+            type="button"
+            class="legality-item"
+            class:is-active={activeLegalId === doc.id}
+            onclick={() => toggleLegal(doc.id)}
+            aria-expanded={activeLegalId === doc.id}
+          >
+            <div class="legality-item-header">
+              <span class="legality-number">{doc.number}</span>
+              <h3 class="legality-title">{doc.title}</h3>
+              <div class="legality-line" aria-hidden="true"></div>
+            </div>
+
+            {#if activeLegalId === doc.id}
+              <div class="legality-body">
+                <p class="legality-desc">{doc.description}</p>
+              </div>
+            {/if}
+          </button>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/legality" class="button-dark">
+        <span>LEGALITY DETAIL</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- News & Insight Section -->
+<section class="section-light" aria-label="News and Insight">
+  <div class="container">
+    <!-- Badge & Header -->
+    <div class="insight-intro">
+      <div class="tagline-wrapper">
+        <span class="tagline">NEWS &amp; INSIGHT</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">Corporate news &amp; sector insight</h2>
+    </div>
+
+    <!-- 3x2 Grid Category Cards -->
+    <div class="insight-grid">
+      {#each newsCategories as category}
+        <a href={`/news?category=${category.slug}`} class="insight-card">
+          <span class="insight-number">{category.number}</span>
+          <h3 class="insight-card-title">{category.title}</h3>
+          <p class="insight-card-desc">{category.description}</p>
+          <div class="insight-card-line" aria-hidden="true"></div>
+        </a>
+      {/each}
+    </div>
+
+    <!-- Bottom CTA Button -->
+    <div class="">
+      <a href="/news" class="button-light">
+        <span>Read News</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
 
 <style>
-	/* ==========================================================================
-	   About Us / Who We Are (Light Luxury Theme)
+  /* ==========================================================================
+	   About Us
 	   ========================================================================== */
-	.about-section {
-		background-color: #ffffff;
-		color: #0b1523;
-		padding: clamp(64px, 8vw, 100px) 0 clamp(60px, 7vw, 90px) 0;
-		position: relative;
-		overflow: hidden;
-		border-top: 1px solid rgba(0, 0, 0, 0.05);
-	}
+  .about-main-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(36px, 5.5vw, 72px);
+    align-items: center;
+    margin-bottom: clamp(56px, 7vw, 92px);
+  }
 
-	.about-container {
-		width: 100%;
-		max-width: 1360px;
-		margin: 0 auto;
-		padding: 0 clamp(20px, 4vw, 56px);
-	}
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
 
-	.about-main-grid {
-		display: grid;
-		grid-template-columns: 1.05fr 1fr;
-		gap: clamp(36px, 5.5vw, 72px);
-		align-items: center;
-		margin-bottom: clamp(56px, 7vw, 92px);
-	}
+  .about-media {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
-	.about-content {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		text-align: left;
-	}
+  .image-frame {
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(13, 30, 52, 0.09);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    aspect-ratio: 16 / 10;
+    background-color: #071322;
+  }
 
-	.tagline-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		margin-bottom: 22px;
-	}
+  .meeting-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-	.about-tagline {
-		font-family: var(--font-main);
-		font-size: 12.5px;
-		font-weight: 800;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--color-gold, #d79f39);
-		display: block;
-	}
+  .image-frame:hover .meeting-image {
+    transform: scale(1.025);
+  }
 
-	.tagline-bar {
-		display: block;
-		width: 44px;
-		height: 3px;
-		background-color: var(--color-gold, #d79f39);
-		margin-top: 8px;
-		border-radius: 1px;
-	}
+  .pillars-container {
+    width: 100%;
+    border-top: 1px solid #edf0f5;
+    padding-top: 48px;
+  }
 
-	.about-headline {
-		font-family: var(--font-main);
-		font-size: clamp(2rem, 3.2vw, 3.15rem);
-		font-weight: 800;
-		line-height: 1.18;
-		letter-spacing: -0.025em;
-		color: #0d1e34;
-		margin: 0 0 24px 0;
-	}
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+  }
 
-	.about-description {
-		font-family: var(--font-main);
-		font-size: clamp(0.96rem, 1.08vw, 1.05rem);
-		line-height: 1.76;
-		color: #516277;
-		max-width: 540px;
-		margin: 0 0 34px 0;
-		font-weight: 400;
-	}
+  .pillar-item {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border-right: 1px solid #e8ecf2;
+    transition: all 0.3s ease;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
-	.about-cta-wrapper {
-		display: flex;
-	}
+  .pillar-item:last-child {
+    border-right: none;
+  }
 
-	.btn-about {
-		display: inline-flex;
-		align-items: center;
-		gap: 12px;
-		padding: 14px 28px;
-		background-color: #ffffff;
-		color: #0d1e34;
-		border: 1px solid #d3dae4;
-		border-radius: 2px;
-		font-family: var(--font-main);
-		font-size: 12px;
-		font-weight: 800;
-		letter-spacing: 0.09em;
-		text-transform: uppercase;
-		text-decoration: none;
-		transition: all 0.25s ease;
-		box-shadow: 0 2px 8px rgba(13, 30, 52, 0.04);
-	}
+  .pillar-inner {
+    padding: 24px 22px 28px 22px;
+    height: 100%;
+    min-height: 205px;
+    border-radius: 4px;
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
 
-	.btn-about:hover {
-		border-color: #0d1e34;
-		background-color: #0d1e34;
-		color: #ffffff;
-		transform: translateY(-2px);
-		box-shadow: 0 6px 18px rgba(13, 30, 52, 0.12);
-	}
+  .pillar-item.active .pillar-inner,
+  .pillar-item:hover .pillar-inner {
+    background-color: #f5f7fa;
+    box-shadow: 0 6px 20px rgba(13, 30, 52, 0.04);
+  }
 
-	.btn-about:hover .arrow-icon {
-		transform: translateX(4px);
-	}
+  .pillar-number {
+    font-family: var(--font-main);
+    font-size: 13.5px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-gold, #d79f39);
+    margin-bottom: 12px;
+    display: inline-block;
+  }
 
-	.arrow-icon {
-		width: 16px;
-		height: 16px;
-		transition: transform 0.25s ease;
-	}
+  .pillar-title {
+    font-family: var(--font-main);
+    font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+    font-weight: 800;
+    color: #0d1e34;
+    margin: 0 0 12px 0;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    min-height: 3.1rem;
+    display: flex;
+    align-items: flex-start;
+  }
 
-	.about-media {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-	}
+  .pillar-accent-line {
+    width: 32px;
+    height: 2.5px;
+    background-color: var(--color-gold, #d79f39);
+    border-radius: 1px;
+    margin-bottom: 16px;
+    transition: width 0.3s ease;
+  }
 
-	.image-frame {
-		width: 100%;
-		border-radius: 3px;
-		overflow: hidden;
-		box-shadow: 0 16px 40px rgba(13, 30, 52, 0.09);
-		border: 1px solid rgba(0, 0, 0, 0.04);
-		aspect-ratio: 16 / 10;
-		background-color: #071322;
-	}
+  .pillar-item.active .pillar-accent-line,
+  .pillar-item:hover .pillar-accent-line {
+    width: 44px;
+  }
 
-	.meeting-image {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
-		display: block;
-		transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-	}
+  .pillar-desc {
+    font-family: var(--font-main);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #55667c;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+    pointer-events: none;
+  }
 
-	.image-frame:hover .meeting-image {
-		transform: scale(1.025);
-	}
+  .pillar-desc.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 
-	.pillars-container {
-		width: 100%;
-		border-top: 1px solid #edf0f5;
-		padding-top: 48px;
-	}
+  /* ===========================================================
+     Business Ecosystem
+     =========================================================== */
 
-	.pillars-grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 0;
-	}
+  /* Grid Layout (2 Columns Master-Detail) */
+  .eco-content {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
 
-	.pillar-item {
-		position: relative;
-		cursor: pointer;
-		outline: none;
-		border-right: 1px solid #e8ecf2;
-		transition: all 0.3s ease;
-		background: transparent;
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-	}
+  /* KOLOM KIRI: Vertical Tabs List */
+  .nodes-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-	.pillar-item:last-child {
-		border-right: none;
-	}
+  .node-btn {
+    position: relative;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 22px 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: 100%;
+  }
 
-	.pillar-inner {
-		padding: 24px 22px 28px 22px;
-		height: 100%;
-		min-height: 205px;
-		border-radius: 4px;
-		transition: background-color 0.25s ease, box-shadow 0.25s ease;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		text-align: left;
-	}
+  .node-btn:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
 
-	.pillar-item.active .pillar-inner,
-	.pillar-item:hover .pillar-inner {
-		background-color: #f5f7fa;
-		box-shadow: 0 6px 20px rgba(13, 30, 52, 0.04);
-	}
+  .node-btn.is-active {
+    background: rgba(255, 255, 255, 0.05);
+  }
 
-	.pillar-number {
-		font-family: var(--font-main);
-		font-size: 13.5px;
-		font-weight: 800;
-		letter-spacing: 0.1em;
-		color: var(--color-gold, #d79f39);
-		margin-bottom: 12px;
-		display: inline-block;
-	}
+  .node-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #64748b;
+    transition: color 0.25s ease;
+  }
 
-	.pillar-title {
-		font-family: var(--font-main);
-		font-size: clamp(1.05rem, 1.25vw, 1.25rem);
-		font-weight: 800;
-		color: #0d1e34;
-		margin: 0 0 12px 0;
-		line-height: 1.25;
-		letter-spacing: -0.015em;
-		min-height: 3.1rem;
-		display: flex;
-		align-items: flex-start;
-	}
+  .node-btn.is-active .node-number,
+  .node-btn:hover .node-number {
+    color: var(--color-gold, #d79f39);
+  }
 
-	.pillar-accent-line {
-		width: 32px;
-		height: 2.5px;
-		background-color: var(--color-gold, #d79f39);
-		border-radius: 1px;
-		margin-bottom: 16px;
-		transition: width 0.3s ease;
-	}
+  .node-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #9ab2cb;
+    transition: color 0.25s ease;
+  }
 
-	.pillar-item.active .pillar-accent-line,
-	.pillar-item:hover .pillar-accent-line {
-		width: 44px;
-	}
+  .node-btn.is-active .node-name {
+    color: #ffffff;
+    font-weight: 800;
+  }
 
-	.pillar-desc {
-		font-family: var(--font-main);
-		font-size: 0.88rem;
-		line-height: 1.6;
-		color: #55667c;
-		margin: 0;
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(4px);
-		transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-		pointer-events: none;
-	}
+  .node-btn:hover .node-name {
+    color: #ffffff;
+  }
 
-	.pillar-desc.visible {
-		opacity: 1;
-		visibility: visible;
-		transform: translateY(0);
-		pointer-events: auto;
-	}
+  /* Aksen Garis Emas di Kanan Tombol Aktif */
+  .active-line {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-gold, #d79f39);
+  }
 
-	/* ==========================================================================
-	   Our Business Section (Dark Luxury Corporate Theme)
+  /* KOLOM KANAN: Display Detail (Tanpa Ruang Kosong) */
+  .node-display {
+    border-left: 2px solid var(--color-gold, #d79f39);
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display-header {
+    margin-bottom: 16px;
+  }
+
+  .node-sublabel {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--color-gold, #d79f39);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .node-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .node-desc {
+    font-size: 1.05rem;
+    color: #9ab2cb;
+    line-height: 1.7;
+    margin: 0 0 32px 0;
+  }
+
+  /* Highlights / Poin-Poin Peran */
+  .node-highlights {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+
+  .highlights-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .highlights-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .highlights-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.925rem;
+    color: #e2e8f0;
+  }
+
+  .check-icon {
+    color: var(--color-gold, #d79f39);
+    flex-shrink: 0;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .eco-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .node-display {
+      border-left: none;
+      padding-left: 0;
+      border-top: 2px solid var(--color-gold, #d79f39);
+      padding-top: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .node-title {
+      font-size: 1.75rem;
+    }
+
+    .node-highlights {
+      padding: 16px;
+    }
+  }
+
+  /* ==========================================================================
+	   Our Business Sectors Section
 	   ========================================================================== */
-	.business-section {
-		background-color: #0d2a4d;
-		color: #ffffff;
-		padding: clamp(80px, 9vw, 120px) 0 clamp(72px, 8vw, 110px) 0;
-		position: relative;
-		border-top: 1px solid rgba(255, 255, 255, 0.06);
-	}
+  .business-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: clamp(48px, 6vw, 68px);
+    gap: 36px;
+  }
 
-	.business-container {
-		width: 100%;
-		max-width: 1360px;
-		margin: 0 auto;
-		padding: 0 clamp(20px, 4vw, 56px);
-	}
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-	.business-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
-		margin-bottom: clamp(48px, 6vw, 68px);
-		gap: 36px;
-	}
+  .header-right {
+    max-width: 440px;
+  }
 
-	.header-left {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
+  /* 8-Card Grid Layout with Subtle Dividers */
+  .business-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--color-gold, #d79f39);
+    background-color: transparent;
+  }
 
-	.business-badge {
-		font-family: var(--font-main);
-		font-size: 12.5px;
-		font-weight: 800;
-		letter-spacing: 0.14em;
-		color: var(--color-gold, #d79f39);
-		margin-bottom: 18px;
-		text-transform: uppercase;
-		display: block;
-	}
+  .business-card {
+    position: relative;
+    padding: 40px 32px 42px 32px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    background-color: transparent;
+    border-right: 1px solid var(--color-gold, #d79f39);
+    border-bottom: 1px solid var(--color-gold, #d79f39);
+    transition:
+      background-color 0.28s ease,
+      box-shadow 0.28s ease;
+    outline: none;
+  }
 
-	.business-title {
-		font-family: var(--font-serif);
-		font-size: clamp(2.3rem, 3.8vw, 3.4rem);
-		font-weight: 700;
-		color: #ffffff;
-		line-height: 1.15;
-		letter-spacing: -0.015em;
-		margin: 0;
-	}
+  /* Remove outer right border on column 4 */
+  .business-card:nth-child(4n) {
+    border-right: none;
+  }
 
-	.header-right {
-		max-width: 440px;
-	}
+  /* Remove bottom border on the last row */
+  .business-card:nth-child(n + 5) {
+    border-bottom: none;
+  }
 
-	.business-lead {
-		font-family: var(--font-main);
-		font-size: clamp(0.96rem, 1.1vw, 1.06rem);
-		line-height: 1.75;
-		color: #8fa2bb;
-		margin: 0;
-		font-weight: 400;
-	}
+  /* Hover State matching reference */
+  .business-card:hover,
+  .business-card:focus-visible {
+    box-shadow:
+      inset 0 0 0 1px rgba(215, 159, 57, 0.35),
+      0 12px 32px rgba(0, 0, 0, 0.28);
+    z-index: 1;
+  }
 
-	/* 8-Card Grid Layout with Subtle Dividers */
-	.business-grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		border: 1px solid rgba(255, 255, 255, 0.08);
-		background-color: transparent;
-	}
+  .sector-number {
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-gold, #d79f39);
+    margin-bottom: 24px;
+    display: inline-block;
+  }
 
-	.business-card {
-		position: relative;
-		padding: 40px 32px 42px 32px;
-		min-height: 280px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		text-align: left;
-		background-color: transparent;
-		border-right: 1px solid rgba(255, 255, 255, 0.08);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-		transition: background-color 0.28s ease, box-shadow 0.28s ease;
-		outline: none;
-	}
+  .sector-icon-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    color: var(--color-gold, #d79f39);
+  }
 
-	/* Remove outer right border on column 4 */
-	.business-card:nth-child(4n) {
-		border-right: none;
-	}
+  .sector-icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+  }
 
-	/* Remove bottom border on the last row */
-	.business-card:nth-child(n + 5) {
-		border-bottom: none;
-	}
+  .business-card:hover .sector-icon {
+    transform: scale(1.08);
+  }
 
-	/* Hover State matching reference */
-	.business-card:hover,
-	.business-card:focus-visible {
-		background-color: rgba(14, 38, 70, 0.55);
-		box-shadow: inset 0 0 0 1px rgba(215, 159, 57, 0.35), 0 12px 32px rgba(0, 0, 0, 0.28);
-		z-index: 1;
-	}
+  .sector-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.22rem, 1.4vw, 1.42rem);
+    font-weight: 700;
+    color: #0b1523;
+    line-height: 1.3;
+    margin: 0 0 14px 0;
+    letter-spacing: -0.01em;
+  }
 
-	.sector-number {
-		font-family: var(--font-main);
-		font-size: 13px;
-		font-weight: 800;
-		letter-spacing: 0.1em;
-		color: var(--color-gold, #d79f39);
-		margin-bottom: 24px;
-		display: inline-block;
-	}
+  .sector-desc {
+    font-family: var(--font-main);
+    font-size: 0.92rem;
+    line-height: 1.68;
+    color: #0d2a4d;
+    margin: 0;
+    font-weight: 400;
+  }
 
-	.sector-icon-wrapper {
-		display: flex;
-		align-items: center;
-		margin-bottom: 24px;
-		color: var(--color-gold, #d79f39);
-	}
+  /* Bottom CTA Button */
+  .business-action {
+    margin-top: clamp(40px, 5vw, 56px);
+    display: flex;
+    justify-content: flex-start;
+  }
 
-	.sector-icon {
-		width: 32px;
-		height: 32px;
-		transition: transform 0.3s ease;
-	}
-
-	.business-card:hover .sector-icon {
-		transform: scale(1.08);
-	}
-
-	.sector-title {
-		font-family: var(--font-serif);
-		font-size: clamp(1.22rem, 1.4vw, 1.42rem);
-		font-weight: 700;
-		color: #ffffff;
-		line-height: 1.3;
-		margin: 0 0 14px 0;
-		letter-spacing: -0.01em;
-	}
-
-	.sector-desc {
-		font-family: var(--font-main);
-		font-size: 0.92rem;
-		line-height: 1.68;
-		color: #8da1b9;
-		margin: 0;
-		font-weight: 400;
-	}
-
-	/* Bottom CTA Button */
-	.business-action {
-		margin-top: clamp(40px, 5vw, 56px);
-		display: flex;
-		justify-content: flex-start;
-	}
-
-	.btn-services {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 12px;
-		padding: 16px 32px;
-		background-color: var(--color-gold, #d79f39);
-		color: #06182c;
-		text-decoration: none;
-		font-family: var(--font-main);
-		font-size: 12.5px;
-		font-weight: 800;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		border-radius: 2px;
-		transition: all 0.25s ease;
-		box-shadow: 0 4px 18px rgba(215, 159, 57, 0.25);
-		border: 1px solid transparent;
-	}
-
-	.btn-services:hover {
-		background-color: var(--color-gold-hover, #e5af4b);
-		transform: translateY(-2px);
-		box-shadow: 0 8px 24px rgba(215, 159, 57, 0.4);
-	}
-
-	.btn-services:hover .btn-icon {
-		transform: translateX(4px);
-	}
-
-	.btn-icon {
-		width: 17px;
-		height: 17px;
-		transition: transform 0.25s ease;
-	}
-
-	/* ==========================================================================
+  /* ==========================================================================
 	   Responsive Breakpoints
 	   ========================================================================== */
-	@media (max-width: 1080px) {
-		.pillars-grid {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 16px;
-		}
+  @media (max-width: 1080px) {
+    .pillars-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
 
-		.pillar-item {
-			border-right: none;
-			border-bottom: 1px solid #e8ecf2;
-		}
+    .pillar-item {
+      border-right: none;
+      border-bottom: 1px solid #e8ecf2;
+    }
 
-		.pillar-item:last-child {
-			border-bottom: none;
-		}
+    .pillar-item:last-child {
+      border-bottom: none;
+    }
 
-		.pillar-inner {
-			min-height: 180px;
-		}
+    .pillar-inner {
+      min-height: 180px;
+    }
 
-		.business-header {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 20px;
-		}
+    .business-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
 
-		.business-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
+    .business-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-		.business-card:nth-child(4n) {
-			border-right: 1px solid rgba(255, 255, 255, 0.08);
-		}
+    .business-card:nth-child(4n) {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-		.business-card:nth-child(2n) {
-			border-right: none;
-		}
+    .business-card:nth-child(2n) {
+      border-right: none;
+    }
 
-		.business-card:nth-child(n + 5) {
-			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-		}
+    .business-card:nth-child(n + 5) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-		.business-card:nth-child(n + 7) {
-			border-bottom: none;
-		}
-	}
+    .business-card:nth-child(n + 7) {
+      border-bottom: none;
+    }
+  }
 
-	@media (max-width: 900px) {
-		.about-main-grid {
-			grid-template-columns: 1fr;
-			gap: 40px;
-		}
+  @media (max-width: 900px) {
+    .about-main-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
 
-		.about-headline {
-			font-size: 2.2rem;
-		}
+    .image-frame {
+      max-height: 420px;
+    }
+  }
 
-		.image-frame {
-			max-height: 420px;
-		}
-	}
+  @media (max-width: 640px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
 
-	@media (max-width: 640px) {
-		.pillars-grid {
-			grid-template-columns: 1fr;
-			gap: 12px;
-		}
+    .pillar-inner {
+      min-height: auto;
+      padding: 20px 16px;
+      background-color: #fafbfc;
+    }
 
-		.pillar-inner {
-			min-height: auto;
-			padding: 20px 16px;
-			background-color: #fafbfc;
-		}
+    .pillar-title {
+      min-height: auto;
+    }
 
-		.pillar-title {
-			min-height: auto;
-		}
+    .pillar-desc {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+    }
 
-		.pillar-desc {
-			opacity: 0;
-			visibility: hidden;
-			transform: translateY(4px);
-			transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-		}
+    .pillar-desc.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      margin-top: 4px;
+    }
 
-		.pillar-desc.visible {
-			opacity: 1;
-			visibility: visible;
-			transform: translateY(0);
-			margin-top: 4px;
-		}
+    .business-grid {
+      grid-template-columns: 1fr;
+    }
 
-		.btn-about {
-			width: 100%;
-			justify-content: center;
-		}
+    .business-card {
+      border-right: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      padding: 28px 20px;
+      min-height: auto;
+    }
 
-		.business-grid {
-			grid-template-columns: 1fr;
-		}
+    .business-card:last-child {
+      border-bottom: none !important;
+    }
+  }
 
-		.business-card {
-			border-right: none !important;
-			border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-			padding: 28px 20px;
-			min-height: auto;
-		}
-
-		.business-card:last-child {
-			border-bottom: none !important;
-		}
-
-		.btn-services {
-			width: 100%;
-			justify-content: center;
-		}
-	}
-
-	/* ==========================================================================
+  /* ==========================================================================
 	   Development Cycle Section (Light Gray Theme)
 	   ========================================================================== */
-	.cycle-section {
-		background-color: #f0f2f5;
-		color: #0d1e34;
-		padding: clamp(72px, 9vw, 110px) 0 clamp(72px, 8vw, 100px) 0;
-		border-top: 1px solid #e2e7ee;
-	}
 
-	.cycle-container {
-		width: 100%;
-		max-width: 1360px;
-		margin: 0 auto;
-		padding: 0 clamp(20px, 4vw, 56px);
-	}
+  .cycle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: clamp(40px, 5.5vw, 64px);
+    gap: 36px;
+  }
 
-	.cycle-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
-		margin-bottom: clamp(40px, 5.5vw, 64px);
-		gap: 36px;
-	}
+  .cycle-header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-	.cycle-header-left {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
+  .cycle-header-right {
+    max-width: 400px;
+  }
 
-	.cycle-badge {
-		font-family: var(--font-main);
-		font-size: 12.5px;
-		font-weight: 800;
-		letter-spacing: 0.14em;
-		color: var(--color-gold, #d79f39);
-		text-transform: uppercase;
-		margin-bottom: 18px;
-		display: block;
-	}
+  /* 7-Column Accordion Grid */
+  .cycle-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 2px solid var(--color-gold, #d79f39);
+    background-color: transparent;
+  }
 
-	.cycle-title {
-		font-family: var(--font-serif);
-		font-size: clamp(2.1rem, 3.5vw, 3.1rem);
-		font-weight: 700;
-		color: #0d1e34;
-		line-height: 1.18;
-		letter-spacing: -0.018em;
-		margin: 0;
-	}
+  .cycle-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    padding: 24px 20px 28px 20px;
+    background-color: #ffffff;
+    border: none;
+    border-right: 1px solid #dde2ea;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      background-color 0.22s ease,
+      box-shadow 0.22s ease;
+    outline: none;
+  }
 
-	.cycle-header-right {
-		max-width: 400px;
-	}
+  .cycle-step:last-child {
+    border-right: none;
+  }
 
-	.cycle-lead {
-		font-family: var(--font-main);
-		font-size: clamp(0.94rem, 1.05vw, 1.04rem);
-		line-height: 1.72;
-		color: #6a7d92;
-		margin: 0;
-		font-weight: 400;
-	}
+  .cycle-step.open,
+  .cycle-step:hover {
+    background-color: #f7f9fb;
+  }
 
-	/* 7-Column Accordion Grid */
-	.cycle-grid {
-		display: grid;
-		grid-template-columns: repeat(7, 1fr);
-		border: 1px solid #dde2ea;
-		background-color: transparent;
-	}
+  .cycle-step.open {
+    border-left: 2px solid var(--color-gold, #d79f39);
+    box-shadow: inset 0 0 0 1px rgba(215, 159, 57, 0.25);
+  }
 
-	.cycle-step {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		min-height: 200px;
-		padding: 24px 20px 28px 20px;
-		background-color: #ffffff;
-		border: none;
-		border-right: 1px solid #dde2ea;
-		cursor: pointer;
-		text-align: left;
-		transition: background-color 0.22s ease, box-shadow 0.22s ease;
-		outline: none;
-	}
+  .step-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
 
-	.cycle-step:last-child {
-		border-right: none;
-	}
+  .step-number {
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--color-gold, #d79f39);
+  }
 
-	.cycle-step.open,
-	.cycle-step:hover {
-		background-color: #f7f9fb;
-	}
+  .step-toggle {
+    font-size: 18px;
+    font-weight: 300;
+    color: #9aabb9;
+    line-height: 1;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
 
-	.cycle-step.open {
-		border-left: 2px solid var(--color-gold, #d79f39);
-		box-shadow: inset 0 0 0 1px rgba(215, 159, 57, 0.25);
-	}
+  .cycle-step.open .step-toggle {
+    color: var(--color-gold, #d79f39);
+  }
 
-	.step-top {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		margin-bottom: 16px;
-	}
+  .step-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+  }
 
-	.step-number {
-		font-family: var(--font-main);
-		font-size: 13px;
-		font-weight: 800;
-		letter-spacing: 0.1em;
-		color: var(--color-gold, #d79f39);
-	}
+  .step-desc {
+    font-family: var(--font-main);
+    font-size: 0.83rem;
+    line-height: 1.6;
+    color: var(--color-gold, #d79f39);
+    margin: 0 0 16px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+    pointer-events: none;
+  }
 
-	.step-toggle {
-		font-size: 18px;
-		font-weight: 300;
-		color: #9aabb9;
-		line-height: 1;
-		transition: color 0.2s ease, transform 0.2s ease;
-	}
+  .step-desc-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 
-	.cycle-step.open .step-toggle {
-		color: var(--color-gold, #d79f39);
-	}
+  .step-title {
+    font-family: var(--font-main);
+    font-size: clamp(1.1rem, 1.2vw, 1.28rem);
+    font-weight: 700;
+    color: #0d1e34;
+    margin: 0;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
 
-	.step-body {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		justify-content: flex-end;
-	}
+  /* Responsive for cycle section */
+  @media (max-width: 1080px) {
+    .cycle-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
 
-	.step-desc {
-		font-family: var(--font-main);
-		font-size: 0.83rem;
-		line-height: 1.6;
-		color: var(--color-gold, #d79f39);
-		margin: 0 0 16px 0;
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(-6px);
-		transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-		pointer-events: none;
-	}
+    .cycle-step:nth-child(4n) {
+      border-right: none;
+    }
 
-	.step-desc-visible {
-		opacity: 1;
-		visibility: visible;
-		transform: translateY(0);
-		pointer-events: auto;
-	}
+    .cycle-step:nth-child(n + 5) {
+      border-top: 1px solid #dde2ea;
+    }
 
-	.step-title {
-		font-family: var(--font-serif);
-		font-size: clamp(1.1rem, 1.2vw, 1.28rem);
-		font-weight: 700;
-		color: #0d1e34;
-		margin: 0;
-		line-height: 1.25;
-		letter-spacing: -0.01em;
-	}
+    .cycle-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  }
 
-	/* Responsive for cycle section */
-	@media (max-width: 1080px) {
-		.cycle-grid {
-			grid-template-columns: repeat(4, 1fr);
-		}
+  @media (max-width: 640px) {
+    .cycle-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-		.cycle-step:nth-child(4n) {
-			border-right: none;
-		}
+    .cycle-step {
+      border-right: 1px solid #dde2ea;
+      border-bottom: 1px solid #dde2ea;
+      min-height: 160px;
+    }
 
-		.cycle-step:nth-child(n + 5) {
-			border-top: 1px solid #dde2ea;
-		}
+    .cycle-step:nth-child(2n) {
+      border-right: none;
+    }
+  }
 
-		.cycle-header {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 20px;
-		}
-	}
+  /* ===========================================================
+     Strategic Partnership Styling
+     =========================================================== */
 
-	@media (max-width: 640px) {
-		.cycle-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
+  /* Badge & Bar Header */
+  .partner-intro {
+    margin-bottom: 48px;
+  }
 
-		.cycle-step {
-			border-right: 1px solid #dde2ea;
-			border-bottom: 1px solid #dde2ea;
-			min-height: 160px;
-		}
+  /* Grid Layout (5 Columns Equal Width) */
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #ffffff;
+    border: 1px solid #eef2f6;
+    margin-bottom: 48px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  }
 
-		.cycle-step:nth-child(2n) {
-			border-right: none;
-		}
-	}
+  /* Interactive Card Styling */
+  .partner-card {
+    position: relative;
+    padding: 36px 24px;
+    background-color: #ffffff;
+    border-right: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 180px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  .partner-card:last-child {
+    border-right: none;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0d1e38;
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  .card-line {
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-gold, #d79f39);
+    transition:
+      width 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  /* Description Styling (Default Hidden State) */
+  .card-desc {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 16px 0 0 0;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      max-height 0.3s ease;
+  }
+
+  /* EFEK HOVER: Menampilkan Deskripsi & Mengubah Tampilan Kartu */
+  .partner-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    border-color: transparent;
+  }
+
+  .partner-card:hover .card-title {
+    color: #0d1e38;
+  }
+
+  .partner-card:hover .card-line {
+    width: 100%;
+  }
+
+  .partner-card:hover .card-desc {
+    opacity: 1;
+    max-height: 120px;
+    transform: translateY(0);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .partner-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .partner-card {
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .partner-card:nth-child(3n) {
+      border-right: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .partner-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .partner-card {
+      border-right: none;
+      border-bottom: 1px solid #eef2f6;
+      min-height: auto;
+    }
+
+    /* Pada layar sentuh / mobile, tampilkan deskripsi secara permanen */
+    .card-desc {
+      opacity: 1;
+      max-height: none;
+      transform: none;
+    }
+
+    .card-line {
+      width: 100%;
+    }
+  }
+
+  /* ===========================================================
+     Project & Portfolio Section
+     =========================================================== */
+
+  /* Badge & Header */
+  .portfolio-intro {
+    margin-bottom: 56px;
+  }
+
+  /* Grid Layout (2 Columns Master-Detail) */
+  .portfolio-content {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+
+  /* KOLOM KIRI: Vertical Buttons List */
+  .portfolio-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .portfolio-btn {
+    position: relative;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 22px 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    width: 100%;
+  }
+
+  .portfolio-btn:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .portfolio-btn.is-active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .btn-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #64748b;
+    transition: color 0.25s ease;
+  }
+
+  .portfolio-btn.is-active .btn-number,
+  .portfolio-btn:hover .btn-number {
+    color: var(--color-gold, #d79f39);
+  }
+
+  .btn-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #9ab2cb;
+    transition: color 0.25s ease;
+  }
+
+  .portfolio-btn.is-active .btn-title {
+    color: #ffffff;
+    font-weight: 800;
+  }
+
+  .portfolio-btn:hover .btn-title {
+    color: #ffffff;
+  }
+
+  /* Indikator Garis Emas Horizontal di Sebelah Kanan Tombol Aktif */
+  .active-line {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-gold, #d79f39);
+  }
+
+  /* KOLOM KANAN: Display Detail Panel */
+  .portfolio-display {
+    border-left: 2px solid var(--color-gold, #d79f39);
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display-header {
+    margin-bottom: 16px;
+  }
+
+  .display-badge {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--color-gold, #d79f39);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .display-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .display-overview {
+    font-size: 1.05rem;
+    color: #9ab2cb;
+    line-height: 1.7;
+    margin: 0 0 32px 0;
+    max-width: 600px;
+  }
+
+  /* Specs (Solution & Impact List) */
+  .display-specs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spec-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .spec-row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .spec-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--color-gold, #d79f39);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .spec-text {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .portfolio-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .portfolio-display {
+      border-left: none;
+      padding-left: 0;
+      border-top: 2px solid var(--color-gold, #d79f39);
+      padding-top: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .spec-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .display-title {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* ===========================================================
+     Section Layout & Common Styles
+     =========================================================== */
+  .impact-journey-container {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 56px);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+
+  /* Badge & Section Intro */
+  .section-badge {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold, #c08d2b);
+    display: block;
+  }
+
+  .section-badge-bar {
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-gold, #c08d2b);
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  /* ===========================================================
+     KOLOM KIRI: ESG Grid & Button
+     =========================================================== */
+  .impact-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .esg-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 40px 0;
+    border-top: 1px solid #eef2f6;
+  }
+
+  /* Ubah esg-card dari div menjadi button */
+  .esg-card {
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 28px 24px 28px 0;
+    border-right: 1px solid #eef2f6;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+  }
+
+  .esg-card:nth-child(2n) {
+    border-right: none;
+    padding-left: 28px;
+    padding-right: 0;
+  }
+
+  .esg-card:nth-child(n + 3) {
+    border-bottom: none;
+  }
+
+  .esg-card:hover {
+    background-color: #f8fafc;
+  }
+
+  .esg-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .esg-number {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    letter-spacing: 0.05em;
+  }
+
+  .esg-toggle-icon {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-gold, #c08d2b);
+    line-height: 1;
+  }
+
+  .esg-card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0d1e38;
+    margin: 0 0 16px 0;
+  }
+
+  .esg-card-line {
+    width: 28px;
+    height: 2px;
+    background-color: var(--color-gold, #c08d2b);
+    transition: width 0.25s ease;
+  }
+
+  /* Animasi garis emas melebar saat kartu aktif */
+  .esg-card.is-active .esg-card-line {
+    width: 100%;
+  }
+
+  /* Styling Deskripsi */
+  .esg-card-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 16px 0 0 0;
+  }
+
+  /* ===========================================================
+     KOLOM KANAN: Timeline & Milestone Display
+     =========================================================== */
+  .journey-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline-wrapper {
+    margin: 0px 0 32px 0;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .timeline-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 12px;
+    min-width: 480px;
+  }
+
+  .timeline-base-line {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    z-index: 1;
+  }
+
+  .timeline-node {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .timeline-year {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    transition: color 0.2s ease;
+  }
+
+  .timeline-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline-line {
+    width: 1px;
+    height: 12px;
+    background-color: #cbd5e1;
+    transition:
+      background-color 0.2s ease,
+      height 0.2s ease;
+  }
+
+  .timeline-diamond {
+    width: 8px;
+    height: 8px;
+    background-color: #cbd5e1;
+    transform: rotate(45deg);
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
+    margin-top: 4px;
+  }
+
+  /* Timeline Node Active State */
+  .timeline-node.is-active .timeline-year {
+    color: var(--color-gold, #c08d2b);
+    font-size: 1.05rem;
+  }
+
+  .timeline-node.is-active .timeline-line {
+    background-color: var(--color-gold, #c08d2b);
+    height: 18px;
+  }
+
+  .timeline-node.is-active .timeline-diamond {
+    background-color: var(--color-gold, #c08d2b);
+    transform: rotate(45deg) scale(1.3);
+  }
+
+  /* Milestone Display Text */
+  .milestone-display {
+    display: flex;
+    flex-direction: column;
+    padding-top: 12px;
+  }
+
+  .milestone-year-badge {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-gold, #c08d2b);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .milestone-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0d1e38;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.01em;
+  }
+
+  .milestone-desc {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .impact-journey-container {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .esg-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .esg-card {
+      border-right: none !important;
+      border-bottom: 1px solid #eef2f6 !important;
+      padding: 20px 0 !important;
+    }
+
+    .esg-card:last-child {
+      border-bottom: none !important;
+    }
+  }
+
+  /* ===========================================================
+     Badge & Section Intro Header
+     =========================================================== */
+  .section-badge {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold, #c08d2b);
+    display: block;
+  }
+
+  .section-badge-bar {
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-gold, #c08d2b);
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  .vertical-divider {
+    width: 100%;
+    height: 1px;
+    margin-top: 40px;
+  }
+
+  /* ===========================================================
+     BAGIAN 1: MANAGEMENT / LEADERSHIP GRID
+     =========================================================== */
+  .management-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 36px;
+    background-color: #ffffff;
+    border: 2px solid var(--color-gold, #d79f39);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  }
+
+  .leader-card {
+    padding: 36px 32px;
+    border-right: 1px solid #eef2f6;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 140px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .leader-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .leader-card:nth-child(n + 3) {
+    border-bottom: none;
+  }
+
+  .leader-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+
+  .leader-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0d1e38;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .leader-role {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gold, #c08d2b);
+    margin: 0;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      max-height 0.3s ease,
+      margin 0.3s ease;
+  }
+
+  .leader-card:hover .leader-role {
+    opacity: 1;
+    max-height: 40px;
+    transform: translateY(0);
+    margin-top: 8px;
+  }
+
+  .leader-card-line {
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-gold, #c08d2b);
+    transition: width 0.3s ease;
+    margin-top: 16px;
+  }
+
+  .leader-card:hover .leader-card-line {
+    width: 100%;
+  }
+
+  .leader-card-line {
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-gold, #c08d2b);
+  }
+
+  @media (max-width: 640px) {
+    .leader-role {
+      opacity: 1;
+      max-height: none;
+      transform: none;
+      margin-top: 8px;
+    }
+
+    .leader-card-line {
+      width: 100%;
+    }
+  }
+
+  /* ===========================================================
+     BAGIAN 2: CORPORATE LEGALITY LIST
+     =========================================================== */
+  .legality-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .legality-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 36px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .legality-item {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 24px 0;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.25s ease;
+  }
+
+  .legality-item:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .legality-item-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .legality-number {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
+  }
+
+  .legality-item.is-active .legality-number,
+  .legality-item:hover .legality-number {
+    color: var(--color-gold, #c08d2b);
+    transition: color 0.25s ease;
+  }
+
+  .legality-item.is-active .legality-title,
+  .legality-item:hover .legality-title {
+    color: #ffffff;
+    transition: color 0.25s ease;
+  }
+
+  .legality-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #9ab2cb;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .legality-line {
+    width: 48px;
+    height: 2px;
+    background-color: var(--color-gold, #c08d2b);
+    justify-self: end;
+    transition: width 0.25s ease;
+  }
+
+  .legality-item.is-active .legality-line {
+    width: 100%;
+  }
+
+  .legality-body {
+    padding-left: 76px;
+    padding-top: 12px;
+  }
+
+  .legality-desc {
+    font-size: 0.925rem;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 640px) {
+    .leadership-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .leader-card {
+      border-right: none !important;
+      border-bottom: 1px solid #eef2f6 !important;
+      padding: 24px 20px;
+    }
+
+    .leader-card:last-child {
+      border-bottom: none !important;
+    }
+
+    .legality-item-header {
+      grid-template-columns: 40px 1fr auto;
+      gap: 12px;
+    }
+
+    .legality-title {
+      font-size: 1.1rem;
+    }
+
+    .legality-body {
+      padding-left: 52px;
+    }
+  }
+
+  /* ===========================================================
+     News & Insight Styling
+     =========================================================== */
+  .insight-intro {
+    margin-bottom: 48px;
+  }
+
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #ffffff;
+    border: 1px solid #eef2f6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    margin-bottom: 48px;
+  }
+
+  .insight-card {
+    padding: 36px 32px;
+    border-right: 1px solid #eef2f6;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 170px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    text-decoration: none;
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+    overflow: hidden;
+  }
+
+  .insight-card:nth-child(3n) {
+    border-right: none;
+  }
+
+  .insight-card:nth-child(n + 4) {
+    border-bottom: none;
+  }
+
+  .insight-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    z-index: 2;
+  }
+
+  .insight-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    display: block;
+    transition: color 0.2s ease;
+  }
+
+  .insight-card:hover .insight-number {
+    color: var(--color-gold, #c08d2b);
+  }
+
+  .insight-card-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0d1e38;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  /* STYLING DESKRIPSI (Default Sembunyi) */
+  .insight-card-desc {
+    font-size: 0.85rem;
+    color: #0d1e38;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      max-height 0.3s ease,
+      margin 0.3s ease;
+  }
+
+  /* EFEK HOVER: Memunculkan Deskripsi */
+  .insight-card:hover .insight-card-desc {
+    opacity: 1;
+    max-height: 80px;
+    transform: translateY(0);
+    margin-top: 8px;
+  }
+
+  .insight-card-line {
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-gold, #c08d2b);
+    transition: width 0.3s ease;
+    margin-top: auto;
+  }
+
+  .insight-card:hover .insight-card-line {
+    width: 100%;
+  }
+
+  @media (max-width: 992px) {
+    .insight-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .insight-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Tampilkan deskripsi secara langsung di layar HP/sentuh */
+    .insight-card-desc {
+      opacity: 1;
+      max-height: none;
+      transform: none;
+      margin-top: 8px;
+    }
+
+    .insight-card-line {
+      width: 100%;
+    }
+  }
 </style>

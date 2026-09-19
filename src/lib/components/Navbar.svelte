@@ -1,5 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.png';
+	import { page } from '$app/stores';
 
 	export interface NavItem {
 		label: string;
@@ -16,10 +17,10 @@
 	}
 
 	let {
-		active = $bindable('HOME'),
+		active = $bindable(''),
 		brandName = 'PT ARTA LOKA WISALA',
 		ctaText = 'BECOME OUR PARTNER',
-		ctaHref = '#partner',
+		ctaHref = '/contact',
 		items = [
 			{ label: 'HOME', href: '/' },
 			{ label: 'ABOUT US', href: '/about' },
@@ -36,6 +37,14 @@
 	}: Props = $props();
 
 	let isMobileOpen = $state(false);
+
+	let currentActive = $derived.by(() => {
+		const path = $page.url.pathname;
+		const matched = items.find((item) =>
+			item.href === '/' ? path === '/' : path.startsWith(item.href)
+		);
+		return matched ? matched.label : (active || 'HOME');
+	});
 
 	function handleItemClick(item: NavItem) {
 		active = item.label;
@@ -66,11 +75,11 @@
 					<li class="nav-item">
 						<a
 							href={item.href}
-							class="nav-link {active === item.label ? 'is-active' : ''}"
+							class="nav-link {currentActive === item.label ? 'is-active' : ''}"
 							onclick={() => handleItemClick(item)}
 						>
 							<span class="nav-text">{item.label}</span>
-							{#if active === item.label}
+							{#if currentActive === item.label}
 								<span class="active-indicator" aria-hidden="true"></span>
 							{/if}
 						</a>
@@ -129,11 +138,11 @@
 					<li>
 						<a
 							href={item.href}
-							class="mobile-nav-link {active === item.label ? 'is-active' : ''}"
+							class="mobile-nav-link {currentActive === item.label ? 'is-active' : ''}"
 							onclick={() => handleItemClick(item)}
 						>
 							<span>{item.label}</span>
-							{#if active === item.label}
+							{#if currentActive === item.label}
 								<span class="mobile-indicator"></span>
 							{/if}
 						</a>

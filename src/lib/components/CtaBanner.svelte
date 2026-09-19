@@ -5,8 +5,6 @@
 		description?: string;
 		primaryText?: string;
 		primaryHref?: string;
-		secondaryText?: string;
-		secondaryHref?: string;
 		onPrimaryClick?: () => void;
 		onSecondaryClick?: () => void;
 	}
@@ -16,9 +14,7 @@
 		title = 'Have an asset, project or\nbusiness opportunity?',
 		description = "Let's develop its value together. Diskusikan potensi aset Anda dengan tim pengembangan kami.",
 		primaryText = 'BECOME OUR PARTNER',
-		primaryHref = '#partner',
-		secondaryText = 'CONTACT US',
-		secondaryHref = '#contact',
+		primaryHref = '/contact',
 		onPrimaryClick,
 		onSecondaryClick
 	}: Props = $props();
@@ -62,19 +58,6 @@
 				}}
 			>
 				{primaryText}
-			</a>
-
-			<a
-				href={secondaryHref}
-				class="btn-outline"
-				onclick={(e) => {
-					if (onSecondaryClick) {
-						e.preventDefault();
-						onSecondaryClick();
-					}
-				}}
-			>
-				{secondaryText}
 			</a>
 		</div>
 	</div>

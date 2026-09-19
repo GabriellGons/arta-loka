@@ -22,9 +22,9 @@
 		titleHighlight = 'Creating Sustainable Value.',
 		description = 'Kami menghubungkan aset, strategi, teknologi, modal, jaringan, dan pasar untuk membangun proyek serta ekosistem bisnis yang produktif dan berkelanjutan.',
 		primaryCtaText = 'EXPLORE OUR BUSINESS',
-		primaryCtaHref = '#our-business',
+		primaryCtaHref = '/our-business',
 		secondaryCtaText = 'BECOME OUR PARTNER',
-		secondaryCtaHref = '#partner',
+		secondaryCtaHref = '/contact',
 		onPrimaryClick,
 		onSecondaryClick
 	}: Props = $props();
