@@ -10,9 +10,7 @@
   />
 </svelte:head>
 
-<!-- ============================================================
-     Hero / Page Header
-     ============================================================ -->
+<!-- Hero / Page Header -->
 <section class="about-hero" aria-label="About Us Hero">
   <div class="about-hero-inner">
     <span class="hero-badge">Strategic Partnership</span>
@@ -26,16 +24,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Partnership Tracks Section
-     ============================================================ -->
-<section class="tracks-section" aria-label="Partnership Tracks">
-  <div class="tracks-container">
+<!-- Partnership Tracks -->
+<section class="section-light" aria-label="Partnership Tracks">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="tracks-intro">
-      <span class="tracks-badge">PARTNERSHIP TRACKS</span>
-      <div class="tracks-badge-bar" aria-hidden="true"></div>
-      <h2 class="tracks-title">Mulai dari apa yang Anda miliki</h2>
+      <div class="tagline-wrapper">
+        <span class="tagline">PARTNERSHIP TRACKS</span>
+        <div class="tagline-bar" aria-hidden="true"></div>
+      </div>
+      <h2 class="title-dark">Mulai dari apa yang Anda miliki</h2>
     </div>
 
     <!-- 5-Column Tracks Grid -->
@@ -98,17 +96,17 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Working Method & Value Creation Section
-     ============================================================ -->
-<section class="method-section" aria-label="Method and Value Creation">
+<!-- Working Method & Value Creation -->
+<section class="section-dark" aria-label="Method and Value Creation">
   <div class="method-container">
     <!-- KOLOM KIRI: VALUE CREATION -->
     <div class="method-column">
       <div class="method-intro">
-        <span class="method-badge">VALUE CREATION</span>
-        <div class="method-badge-bar" aria-hidden="true"></div>
-        <h2 class="method-title">Peran kami dalam struktur kemitraan</h2>
+        <div class="tagline-wrapper">
+          <span class="tagline">VALUE CREATION</span>
+          <div class="tagline-bar" aria-hidden="true"></div>
+        </div>
+        <h2 class="title-light">Peran kami dalam struktur kemitraan</h2>
       </div>
 
       <div class="role-list">
@@ -150,9 +148,11 @@
     <!-- KOLOM KANAN: WORKING METHOD (TAHAPAN KERJA SAMA) -->
     <div class="method-column">
       <div class="method-intro">
-        <span class="method-badge">WORKING METHOD</span>
-        <div class="method-badge-bar" aria-hidden="true"></div>
-        <h2 class="method-title">Tahapan kerja sama</h2>
+        <div class="tagline-wrapper">
+          <span class="tagline">WORKING METHOD</span>
+          <div class="tagline-bar" aria-hidden="true"></div>
+        </div>
+        <h2 class="title-light">Tahapan kerja sama</h2>
       </div>
 
       <!-- Grid 2-Kolom Rapi untuk 7 Tahapan -->
@@ -243,17 +243,17 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Open For / Partnership Grid Section
-     ============================================================ -->
-<section class="openfor-section" aria-label="Open For Partnerships">
-  <div class="openfor-container">
+<!-- Open For / Partnership Grid -->
+<section class="section-light" aria-label="Open For Partnerships">
+  <div class="container">
     <!-- Header Section (Sub-title, Title, & Instruction) -->
     <div class="openfor-header">
       <div class="openfor-title-group">
-        <span class="openfor-badge">OPEN FOR</span>
-        <div class="method-badge-bar" aria-hidden="true"></div>
-        <h2 class="openfor-title">
+        <div class="tagline-wrapper">
+          <span class="tagline">OPEN FOR</span>
+          <div class="tagline-bar" aria-hidden="true"></div>
+        </div>
+        <h2 class="title-dark">
           Punya salah satu dari ini? Mari terhubung.
         </h2>
       </div>
@@ -409,47 +409,10 @@
   /* ===========================================================
      Partnership Tracks
      =========================================================== */
-  .tracks-section {
-    width: 100%;
-    background-color: #ffffff;
-    padding: 80px 40px;
-    box-sizing: border-box;
-    color: #0d1e38;
-  }
-
-  .tracks-container {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
 
   /* Badge & Header */
   .tracks-intro {
     margin-bottom: 56px;
-  }
-
-  .tracks-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .tracks-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .tracks-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-    letter-spacing: -0.02em;
   }
 
   /* Grid Layout (5 Columns dengan border vertical pembatas) */
@@ -460,7 +423,7 @@
 
   .tracks-card {
     padding: 16px 28px 24px 28px;
-    border-right: 1px solid #eef2f6;
+    border-right: 1px solid var(--color-gold);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -548,10 +511,6 @@
       border-bottom: none !important;
     }
 
-    .tracks-section {
-      padding: 50px 20px;
-    }
-
     .tracks-tag {
       margin-top: 20px;
     }
@@ -560,27 +519,6 @@
   /* ===========================================================
      Method & Value Creation
      =========================================================== */
-  .method-section {
-    width: 100%;
-    background: #06182c;
-    color: #ffffff;
-    padding: clamp(80px, 10vw, 120px) 0;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .method-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at 70% 50%,
-      rgba(215, 159, 57, 0.05) 0%,
-      transparent 65%
-    );
-    pointer-events: none;
-  }
 
   .method-container {
     width: 100%;
@@ -602,33 +540,6 @@
   /* Badge & Header */
   .method-intro {
     margin-bottom: 40px;
-  }
-
-  .method-badge {
-    font-size: 12.5px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-gold, #d79f39);
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .method-badge-bar {
-    width: 44px;
-    height: 3px;
-    background-color: var(--color-gold, #d79f39);
-    border-radius: 1px;
-    margin-bottom: 24px;
-  }
-
-  .method-title {
-    font-size: clamp(2rem, 3.2vw, 2.75rem);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    margin: 0;
   }
 
   /* Role List (Kolom Kiri) */
@@ -742,30 +653,11 @@
     .step-card-full {
       grid-column: span 1;
     }
-
-    .method-section {
-      padding: 50px 0;
-    }
   }
 
   /* ===========================================================
      Open For Section
      =========================================================== */
-  .openfor-section {
-    width: 100%;
-    background-color: #f8fafc;
-    padding: clamp(60px, 8vw, 100px) 0;
-    box-sizing: border-box;
-    color: #0d1e38;
-  }
-
-  .openfor-container {
-    width: 100%;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-    box-sizing: border-box;
-  }
 
   /* Header Group */
   .openfor-header {
@@ -780,30 +672,6 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .openfor-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-  }
-
-  .openfor-title {
-    font-size: clamp(2rem, 3.2vw, 2.75rem);
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  .openfor-hint {
-    font-size: 0.875rem;
-    color: #64748b;
-    margin: 0;
-    white-space: nowrap;
   }
 
   /* Grid Layout (4 Kartu Sejajar) */
@@ -912,20 +780,12 @@
       flex-direction: column;
       align-items: flex-start;
     }
-
-    .openfor-hint {
-      white-space: normal;
-    }
   }
 
   @media (max-width: 640px) {
     .openfor-grid {
       grid-template-columns: 1fr;
       gap: 16px;
-    }
-
-    .openfor-section {
-      padding: 50px 0;
     }
   }
 </style>

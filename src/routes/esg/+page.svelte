@@ -8,9 +8,7 @@
   />
 </svelte:head>
 
-<!-- ============================================================
-     Hero / Page Header
-     ============================================================ -->
+<!-- Hero / Page Header -->
 <section class="about-hero" aria-label="About Us Hero">
   <div class="about-hero-inner">
     <span class="hero-badge">ESG & Impact</span>
@@ -24,16 +22,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Four Pillars
-     ============================================================ -->
-<section class="pillars-section" aria-label="Four Pillars">
-  <div class="pillars-container">
+<!-- Four Pillars -->
+<section class="section-light" aria-label="Four Pillars">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="pillars-intro">
-      <span class="pillars-badge">FOUR PILLARS</span>
-      <div class="pillars-badge-bar" aria-hidden="true"></div>
-      <h2 class="pillars-title">
+      <div class="tagline-wrapper">
+        <span class="tagline">FOUR PILLARS</span>
+        <div class="tagline-bar" aria-hidden="true"></div>
+      </div>
+      <h2 class="title-dark">
         Profit <span class="title-square">▪</span> People
         <span class="title-square">▪</span>
         Planet <span class="title-square">▪</span> Partnership
@@ -156,52 +154,10 @@
   /* ===========================================================
      Four Pillars
      =========================================================== */
-  .pillars-section {
-    width: 100%;
-    background-color: #ffffff;
-    padding: 80px 40px;
-    box-sizing: border-box;
-    font-family: var(--font-main, "Plus Jakarta Sans", sans-serif);
-    color: #0d1e38;
-  }
-
-  .pillars-container {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
 
   /* Badge & Header */
   .pillars-intro {
     margin-bottom: 56px;
-  }
-
-  .pillars-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .pillars-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .pillars-title {
-    font-size: clamp(2.2rem, 3.5vw, 3rem);
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-    letter-spacing: -0.02em;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
   }
 
   .title-square {
@@ -233,7 +189,7 @@
   .pillars-number {
     font-size: 2.5rem;
     font-weight: 800;
-    color: #dde2ea;
+    color: #c5cbd5;
     line-height: 1;
     margin-bottom: 16px;
     letter-spacing: -0.03em;
@@ -287,14 +243,6 @@
 
     .pillars-card:last-child {
       border-bottom: none !important;
-    }
-
-    .pillars-section {
-      padding: 50px 20px;
-    }
-
-    .pillars-title {
-      gap: 6px;
     }
   }
 </style>

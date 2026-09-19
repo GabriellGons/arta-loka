@@ -583,7 +583,7 @@
 <!-- Hero Section with arta-loka-hero.jpg -->
 <Hero />
 
-<!-- About Us / Who We Are Section -->
+<!-- About Us -->
 <section
   id="about-us"
   class="section-light"
@@ -613,7 +613,7 @@
           mengembangkan aset menjadi kegiatan ekonomi produktif.
         </p>
 
-        <div class="">
+        <div class="business-action">
           <a href="/about" class="button-light">
             <span>ABOUT US</span>
             <svg
@@ -771,7 +771,7 @@
     <!-- Bottom CTA Button -->
     <div class="business-action">
       <a href="/our-business" class="button-dark">
-        <span>LIHAT DETAIL LAYANAN</span>
+        <span>Our Business</span>
         <svg
           class="button-icon"
           viewBox="0 0 24 24"
@@ -790,7 +790,7 @@
   </div>
 </section>
 
-<!-- Our Business / Multi-Sector Development Section -->
+<!-- Our Business Sector -->
 <section
   id="our-business"
   class="section-light"
@@ -960,7 +960,7 @@
     <!-- Bottom CTA Button -->
     <div class="business-action">
       <a href="/services" class="button-light">
-        <span>LIHAT DETAIL LAYANAN</span>
+        <span>Our Services</span>
         <svg
           class="button-icon"
           viewBox="0 0 24 24"
@@ -1033,7 +1033,7 @@
     <!-- Bottom CTA Button -->
     <div class="business-action">
       <a href="/projects" class="button-dark">
-        <span>LIHAT DETAIL LAYANAN</span>
+        <span>Our Projects</span>
         <svg
           class="button-icon"
           viewBox="0 0 24 24"
@@ -1052,60 +1052,7 @@
   </div>
 </section>
 
-<!-- Strategic Partnership Section -->
-<section class="section-light" aria-label="Strategic Partnership">
-  <div class="container">
-    <!-- Badge & Intro Header -->
-    <div class="partner-intro">
-      <div class="tagline-wrapper">
-        <span class="tagline">STRATEGIC PARTNERSHIP</span>
-        <span class="tagline-bar" aria-hidden="true"></span>
-      </div>
-      <h2 class="title-dark">Let's build value together</h2>
-      <p class="desc-dark">
-        Titik temu bagi pemilik aset, penyedia teknologi, pemilik kapital,
-        pemegang pasar dan pengelola proyek strategis.
-      </p>
-    </div>
-
-    <!-- 5-Column Interactive Grid -->
-    <div class="partner-grid">
-      {#each partnerTracks as track}
-        <div class="partner-card">
-          <div class="card-content">
-            <h3 class="card-title">{track.title}</h3>
-            <div class="card-line" aria-hidden="true"></div>
-
-            <!-- Deskripsi Muncul Saat Hover -->
-            <p class="card-desc">{track.description}</p>
-          </div>
-        </div>
-      {/each}
-    </div>
-
-    <!-- Bottom CTA Button -->
-    <div class="business-action">
-      <a href="/partnership" class="button-light">
-        <span>LIHAT DETAIL LAYANAN</span>
-        <svg
-          class="button-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Project & Portfolio Section -->
+<!-- Project & Portfolio -->
 <section class="section-dark" aria-label="Project and Portfolio">
   <div class="container">
     <!-- Badge & Intro Header -->
@@ -1170,8 +1117,8 @@
     </div>
     <!-- Bottom CTA Button -->
     <div class="business-action">
-      <a href="/partnership" class="button-dark">
-        <span>LIHAT DETAIL LAYANAN</span>
+      <a href="/projects" class="button-dark">
+        <span>See our projects</span>
         <svg
           class="button-icon"
           viewBox="0 0 24 24"
@@ -1190,7 +1137,60 @@
   </div>
 </section>
 
-<!-- ESG & Corporate Journey Section -->
+<!-- Strategic Partnership -->
+<section class="section-light" aria-label="Strategic Partnership">
+  <div class="container">
+    <!-- Badge & Intro Header -->
+    <div class="partner-intro">
+      <div class="tagline-wrapper">
+        <span class="tagline">STRATEGIC PARTNERSHIP</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">Let's build value together</h2>
+      <p class="desc-dark">
+        Titik temu bagi pemilik aset, penyedia teknologi, pemilik kapital,
+        pemegang pasar dan pengelola proyek strategis.
+      </p>
+    </div>
+
+    <!-- 5-Column Interactive Grid -->
+    <div class="partner-grid">
+      {#each partnerTracks as track}
+        <div class="partner-card">
+          <div class="card-content">
+            <h3 class="card-title">{track.title}</h3>
+            <div class="card-line" aria-hidden="true"></div>
+
+            <!-- Deskripsi Muncul Saat Hover -->
+            <p class="card-desc">{track.description}</p>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    <!-- Bottom CTA Button -->
+    <div class="business-action">
+      <a href="/partnership" class="button-light">
+        <span>Partnership</span>
+        <svg
+          class="button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ESG & Corporate Journey -->
 <section class="section-light" aria-label="ESG Impact and Corporate Journey">
   <div class="impact-journey-container">
     <!-- KOLOM KIRI: ESG & IMPACT -->
@@ -1301,7 +1301,7 @@
   </div>
 </section>
 
-<!-- Management & Corporate Legality Section -->
+<!-- Management & Corporate Legality -->
 <section class="section-dark" aria-label="Management and Legality">
   <div class="container">
     <!-- BAGIAN 1 (ATAS): MANAGEMENT / LEADERSHIP TEAM -->
@@ -1491,8 +1491,7 @@
 
   .pillars-container {
     width: 100%;
-    border-top: 1px solid #edf0f5;
-    padding-top: 48px;
+    border: 2px solid var(--color-gold, #d79f39);
   }
 
   .pillars-grid {
@@ -1505,7 +1504,7 @@
     position: relative;
     cursor: pointer;
     outline: none;
-    border-right: 1px solid #e8ecf2;
+    border-right: 1px solid var(--color-gold, #d79f39);
     transition: all 0.3s ease;
     background: transparent;
     display: flex;

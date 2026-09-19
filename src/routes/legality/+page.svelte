@@ -8,9 +8,7 @@
   />
 </svelte:head>
 
-<!-- ============================================================
-     Hero / Page Header
-     ============================================================ -->
+<!-- Hero / Page Header -->
 <section class="about-hero" aria-label="About Us Hero">
   <div class="about-hero-inner">
     <span class="hero-badge">Legality</span>
@@ -23,16 +21,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Legality / Document Status Section
-     ============================================================ -->
-<section class="legality-section" aria-label="Document Status">
-  <div class="legality-container">
+<!-- Legality / Document Status -->
+<section class="section-light" aria-label="Document Status">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="legality-intro">
-      <span class="legality-badge">DOCUMENT STATUS</span>
-      <div class="legality-badge-bar" aria-hidden="true"></div>
-      <h2 class="legality-title">Legalitas &amp; perizinan perusahaan</h2>
+      <div class="tagline-wrapper">
+        <span class="tagline">DOCUMENT STATUS</span>
+        <div class="tagline-bar" aria-hidden="true"></div>
+      </div>
+      <h2 class="title-dark">Legalitas &amp; perizinan perusahaan</h2>
     </div>
 
     <!-- 3-Column Document Cards Grid -->
@@ -284,48 +282,10 @@
   /* ===========================================================
 	   Legality
 	   =========================================================== */
-  .legality-section {
-    width: 100%;
-    background-color: #ffffff;
-    padding: 80px 40px;
-    box-sizing: border-box;
-    font-family: var(--font-main, "Plus Jakarta Sans", sans-serif);
-    color: #0d1e38;
-  }
-
-  .legality-container {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
 
   /* Badge & Header */
   .legality-intro {
     margin-bottom: 48px;
-  }
-
-  .legality-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .legality-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 20px;
-  }
-
-  .legality-title {
-    font-size: 2.75rem;
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-    letter-spacing: -0.02em;
   }
 
   /* Grid Layout (3-Column dengan garis pembatas halus) */
@@ -337,8 +297,8 @@
   /* Card Item */
   .legality-card {
     padding: 36px 32px 32px 32px;
-    border-right: 1px solid #dde2ea;
-    border-bottom: 1px solid #dde2ea;
+    border-right: 1px solid #c5cbd5;
+    border-bottom: 1px solid #c5cbd5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -432,14 +392,6 @@
 
     .legality-card:last-child {
       border-bottom: none !important;
-    }
-
-    .legality-section {
-      padding: 50px 20px;
-    }
-
-    .legality-title {
-      font-size: 2rem;
     }
   }
 </style>

@@ -66,9 +66,7 @@
   />
 </svelte:head>
 
-<!-- ============================================================
-     Hero / Page Header
-     ============================================================ -->
+<!-- Hero / Page Header -->
 <section class="about-hero" aria-label="About Us Hero">
   <div class="about-hero-inner">
     <span class="hero-badge">ABOUT US</span>
@@ -86,17 +84,17 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Company Overview — Corporate Positioning
-     ============================================================ -->
-<section class="overview-section" aria-label="Company Overview">
-  <div class="overview-container">
+<!-- Company Overview — Corporate Positioning -->
+<section class="section-light" aria-label="Company Overview">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="overview-intro">
-      <span class="overview-badge">COMPANY OVERVIEW</span>
-      <div class="overview-badge-bar" aria-hidden="true"></div>
-      <h2 class="overview-title">Corporate positioning</h2>
-      <p class="overview-lead">
+      <div class="tagline-wrapper">
+        <span class="tagline">COMPANY OVERVIEW</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">Corporate positioning</h2>
+      <p class="desc-dark">
         Perusahaan membantu <strong>mengidentifikasi potensi</strong>, merancang
         strategi, menghubungkan sumber daya serta mengembangkan aset menjadi
         kegiatan usaha yang produktif dan berkelanjutan.
@@ -130,9 +128,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Vision & Mission
-     ============================================================ -->
+<!-- Vision & Mission -->
 <section class="vm-section" aria-label="Vision & Mission">
   <div class="vm-container">
     <!-- KOLOM KIRI: VISION & FILOSOFI -->
@@ -186,16 +182,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Corporate Journey Timeline
-     ============================================================ -->
-<section class="journey-section" aria-label="Corporate Journey">
-  <div class="journey-container">
+<!-- Corporate Journey Timeline -->
+<section class="section-light" aria-label="Corporate Journey">
+  <div class="container">
     <div class="journey-intro">
-      <span class="journey-badge">CORPORATE JOURNEY</span>
-      <div class="journey-badge-bar" aria-hidden="true"></div>
-      <h2 class="journey-title">2020 — 2026</h2>
-      <p class="journey-lead">
+      <div class="tagline-wrapper">
+        <span class="tagline">CORPORATE JOURNEY</span>
+        <div class="tagline-bar" aria-hidden="true"></div>
+      </div>
+      <h2 class="title-dark">2020 — 2026</h2>
+      <p class="desc-dark">
         Perjalanan membangun platform pengembangan aset yang terintegrasi dan
         berkelanjutan.
       </p>
@@ -217,9 +213,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Organization Structure
-     ============================================================ -->
+<!-- Organization Structure -->
 <section class="organization-section" aria-label="Organization & Structure">
   <div class="organization-container">
     <!-- KOLOM KIRI: MANAGEMENT -->
@@ -269,16 +263,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Why Partner With Us
-     ============================================================ -->
-<section class="value-section" aria-label="Why Partner With Us">
-  <div class="value-container">
+<!-- Why Partner With Us -->
+<section class="section-light" aria-label="Why Partner With Us">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="value-intro">
-      <span class="value-badge">WHY PARTNER WITH US</span>
-      <div class="value-badge-bar" aria-hidden="true"></div>
-      <h2 class="value-title">
+      <div class="tagline-wrapper">
+        <span class="tagline">WHY PARTNER WITH US</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">
         We don't just manage assets.<br />
         We develop their value.
       </h2>
@@ -301,9 +295,7 @@
 	   Shared Utilities
 	   =========================================================== */
   .about-hero,
-  .overview-section,
-  .vm-section,
-  .journey-section {
+  .vm-section {
     width: 100%;
   }
 
@@ -379,65 +371,9 @@
   /* ===========================================================
 	   Company Overview (White)
 	   =========================================================== */
-  .overview-section {
-    background-color: #ffffff;
-    padding: clamp(72px, 9vw, 110px) 0 clamp(60px, 8vw, 96px) 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .overview-container {
-    width: 100%;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-  }
-
-  .overview-badge,
-  .journey-badge {
-    font-family: var(--font-main);
-    font-size: 12.5px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #d79f39);
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .overview-badge-bar,
-  .journey-badge-bar {
-    width: 44px;
-    height: 3px;
-    background-color: var(--color-gold, #d79f39);
-    border-radius: 1px;
-    margin-bottom: 28px;
-  }
 
   .overview-intro {
     margin-bottom: 52px;
-  }
-
-  .overview-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 3.2vw, 3rem);
-    font-weight: 700;
-    color: #0d1e34;
-    margin: 0 0 22px 0;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .overview-lead {
-    font-family: var(--font-main);
-    font-size: clamp(0.97rem, 1.1vw, 1.08rem);
-    line-height: 1.76;
-    color: #0d1e34;
-    max-width: 640px;
-    margin: 0;
-  }
-
-  .overview-lead strong {
-    font-weight: 700;
   }
 
   /* 3-Column Grid */
@@ -506,18 +442,18 @@
 	   Vision & Mission (Light Gray)
 	   =========================================================== */
   .vm-section {
-    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 60%, #0a1e36 100%);
+    background: #0d2a4d;
     color: #ffffff;
-    min-height: 100vh;
     padding: 60px 40px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
   }
 
   .vm-container {
-    max-width: 1200px;
+    max-width: 1240px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -624,39 +560,8 @@
   /* ===========================================================
 	   Corporate Journey Timeline
 	   =========================================================== */
-  .journey-section {
-    background: #ffffff;
-    padding: clamp(72px, 9vw, 110px) 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .journey-container {
-    width: 100%;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-  }
-
   .journey-intro {
     margin-bottom: 56px;
-  }
-
-  .journey-title {
-    font-family: var(--font-main);
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    font-weight: 800;
-    color: #0d1e34;
-    margin: 0 0 14px 0;
-    letter-spacing: -0.02em;
-  }
-
-  .journey-lead {
-    font-family: var(--font-main);
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #516277;
-    max-width: 500px;
-    margin: 0;
   }
 
   /* Horizontal Timeline */
@@ -664,12 +569,12 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0;
-    border: 1px solid rgba(215, 159, 57, 0.35);
+    border: 2px solid var(--color-gold, #d79f39);
   }
 
   .timeline-item {
     padding: 28px 22px 32px 22px;
-    border-right: 1px solid rgba(215, 159, 57, 0.35);
+    border-right: 1px solid var(--color-gold, #d79f39);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -702,7 +607,7 @@
     font-family: var(--font-main);
     font-size: 0.96rem;
     font-weight: 900;
-    color: #516277;
+    color: #0b1523;
     margin: 0 0 8px 0;
     line-height: 1.3;
   }
@@ -711,7 +616,7 @@
     font-family: var(--font-main);
     font-size: 0.83rem;
     line-height: 1.62;
-    color: #0d1e34;
+    color: #0d2a4d;
     margin: 0;
   }
 
@@ -719,7 +624,7 @@
 	   Organization Structure
 	   =========================================================== */
   .organization-section {
-    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 60%, #0a1e36 100%);
+    background: #0d2a4d;
     color: #ffffff;
     padding: 60px 40px;
     box-sizing: border-box;
@@ -730,7 +635,7 @@
   }
 
   .organization-container {
-    max-width: 1200px;
+    max-width: 1240px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -751,7 +656,7 @@
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #e2b24c; /* Accent Yellow/Gold */
+    color: #e2b24c;
     text-transform: uppercase;
     display: block;
   }
@@ -877,51 +782,10 @@
   /* ===========================================================
 	   Why Partner With Us
 	   =========================================================== */
-  .value-section {
-    background-color: #f2f4f7; /* Background abu-abu muda terang sesuai gambar */
-    color: #0b1a30;
-    padding: 80px 40px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-
-  .value-container {
-    max-width: 1200px;
-    width: 100%;
-  }
 
   /* Badge & Bar Header */
   .value-intro {
     margin-bottom: 48px;
-  }
-
-  .value-badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #c08d2b; /* Warna emas/kuning */
-    text-transform: uppercase;
-    display: block;
-  }
-
-  .value-badge-bar {
-    width: 35px;
-    height: 3px;
-    background-color: #c08d2b;
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .value-title {
-    font-size: 2.75rem;
-    font-weight: 800;
-    color: #0d1e38;
-    line-height: 1.15;
-    margin: 0;
-    letter-spacing: -0.5px;
   }
 
   /* 3-Column Grid Layout */
@@ -935,7 +799,7 @@
   .value-card {
     background-color: #ffffff;
     padding: 36px 28px;
-    border-top: 3px solid #c08d2b; /* Garis aksen emas di bagian atas card */
+    border-top: 3px solid var(--color-gold, #d79f39); /* Garis aksen emas di bagian atas card */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     display: flex;
     flex-direction: column;
@@ -953,14 +817,14 @@
   .value-card-title {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #0d1e38;
+    color: #0b1523;
     margin: 0 0 16px 0;
     line-height: 1.3;
   }
 
   .value-card-desc {
     font-size: 0.9rem;
-    color: #64748b;
+    color: #0d2a4d;
     line-height: 1.6;
     margin: 0;
   }
@@ -970,23 +834,11 @@
     .value-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-
-    .value-title {
-      font-size: 2.2rem;
-    }
   }
 
   @media (max-width: 640px) {
     .value-grid {
       grid-template-columns: 1fr;
-    }
-
-    .value-section {
-      padding: 40px 20px;
-    }
-
-    .value-title {
-      font-size: 1.75rem;
     }
   }
 

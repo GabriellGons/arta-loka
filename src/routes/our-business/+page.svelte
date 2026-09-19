@@ -134,9 +134,7 @@
   />
 </svelte:head>
 
-<!-- ============================================================
-     Hero / Page Header
-     ============================================================ -->
+<!-- Hero / Page Header -->
 <section class="about-hero" aria-label="About Us Hero">
   <div class="about-hero-inner">
     <span class="hero-badge">Our Business</span>
@@ -150,16 +148,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Business Ecosystem Section
-     ============================================================ -->
-<section class="ecosystem-section" aria-label="Business Ecosystem">
-  <div class="ecosystem-container">
+<!-- Business Ecosystem Section -->
+<section class="section-light" aria-label="Business Ecosystem">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="ecosystem-intro">
-      <span class="ecosystem-badge">BUSINESS ECOSYSTEM</span>
-      <div class="ecosystem-badge-bar" aria-hidden="true"></div>
-      <h2 class="ecosystem-title">Enam simpul ekosistem proyek</h2>
+      <div class="tagline-wrapper">
+        <span class="tagline">BUSINESS ECOSYSTEM</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">Enam simpul ekosistem proyek</h2>
     </div>
 
     <!-- 3x2 Ecosystem Grid -->
@@ -174,19 +172,19 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Asset Management Section (Dark Navy)
-     ============================================================ -->
-<section class="asset-section" aria-label="Asset Management">
+<!-- Asset Management Section -->
+<section class="section-dark" aria-label="Asset Management">
   <div class="asset-container">
     <!-- KOLOM KIRI: TEXT & 2x2 GRID -->
     <div class="asset-content-col">
       <!-- Badge & Intro Header -->
       <div class="asset-intro">
-        <span class="asset-badge">ASSET MANAGEMENT</span>
-        <div class="asset-badge-bar" aria-hidden="true"></div>
-        <h2 class="asset-title">Unlocking asset value</h2>
-        <p class="asset-lead">
+        <div class="tagline-wrapper">
+          <span class="tagline">ASSET MANAGEMENT</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-light">Unlocking asset value</h2>
+        <p class="desc-light">
           Kami melihat aset bukan hanya berdasarkan nilai kepemilikannya, tetapi
           berdasarkan potensi ekonomi yang dapat diciptakan dari aset tersebut.
         </p>
@@ -216,20 +214,20 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Business Sectors Section
-     ============================================================ -->
-<section class="sectors-section" aria-label="Business Sectors">
-  <div class="sectors-container">
+<!-- Business Sectors Section -->
+<section class="section-light" aria-label="Business Sectors">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="sectors-intro">
-      <span class="sectors-badge">BUSINESS SECTORS</span>
-      <div class="sectors-badge-bar" aria-hidden="true"></div>
-      <h2 class="sectors-title">
+      <div class="tagline-wrapper">
+        <span class="tagline">BUSINESS SECTORS</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">
         Integrated multi-<br />
         sector development
       </h2>
-      <p class="sectors-lead">
+      <p class="desc-dark">
         Delapan lini pengembangan yang saling menopang dalam satu ekosistem
         bisnis.
       </p>
@@ -322,56 +320,10 @@
   /* ===========================================================
      Business Ecosystem Section
      =========================================================== */
-  .ecosystem-section {
-    width: 100%;
-    background-color: #ffffff;
-    padding: clamp(60px, 8vw, 100px) 0;
-    box-sizing: border-box;
-    font-family: var(
-      --font-main,
-      "Plus Jakarta Sans",
-      -apple-system,
-      sans-serif
-    );
-    color: #0d1e38;
-  }
-
-  .ecosystem-container {
-    width: 100%;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-    box-sizing: border-box;
-  }
 
   /* Badge & Bar Header */
   .ecosystem-intro {
     margin-bottom: 56px;
-  }
-
-  .ecosystem-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .ecosystem-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .ecosystem-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-    letter-spacing: -0.02em;
   }
 
   /* Grid Layout (3 Columns x 2 Rows) */
@@ -383,22 +335,13 @@
   /* Card Styling & Boundary Borders */
   .ecosystem-card {
     padding: 36px 32px 32px 32px;
-    border-right: 1px solid #eef2f6;
-    border-bottom: 1px solid #eef2f6;
+    border: 2px solid var(--color-gold);
+    border-right: 1px solid var(--color-gold);
+    border-bottom: 1px solid var(--color-gold);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     box-sizing: border-box;
-  }
-
-  /* Menghilangkan border-right pada kolom ke-3 (INVESTOR & MARKET) */
-  .ecosystem-card:nth-child(3n) {
-    border-right: none;
-  }
-
-  /* Menghilangkan border-bottom pada baris ke-2 (3 item terakhir) */
-  .ecosystem-card:nth-child(n + 4) {
-    border-bottom: none;
   }
 
   .ecosystem-card-title {
@@ -454,42 +397,11 @@
     .ecosystem-card:last-child {
       border-bottom: none !important;
     }
-
-    .ecosystem-section {
-      padding: 40px 0;
-    }
   }
 
   /* ===========================================================
      Asset Management Section
      =========================================================== */
-  .asset-section {
-    width: 100%;
-    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 60%, #0a1e36 100%);
-    color: #ffffff;
-    padding: clamp(80px, 10vw, 120px) 0;
-    box-sizing: border-box;
-    font-family: var(
-      --font-main,
-      "Plus Jakarta Sans",
-      -apple-system,
-      sans-serif
-    );
-    position: relative;
-    overflow: hidden;
-  }
-
-  .asset-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at 70% 50%,
-      rgba(215, 159, 57, 0.05) 0%,
-      transparent 65%
-    );
-    pointer-events: none;
-  }
 
   .asset-container {
     width: 100%;
@@ -512,41 +424,6 @@
   /* Badge & Header */
   .asset-intro {
     margin-bottom: 40px;
-  }
-
-  .asset-badge {
-    font-size: 12.5px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-gold, #d79f39);
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .asset-badge-bar {
-    width: 44px;
-    height: 3px;
-    background-color: var(--color-gold, #d79f39);
-    border-radius: 1px;
-    margin-bottom: 24px;
-  }
-
-  .asset-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    margin: 0 0 20px 0;
-  }
-
-  .asset-lead {
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-    line-height: 1.7;
-    color: #9ab2cb;
-    margin: 0;
-    max-width: 580px;
   }
 
   /* Grid 2x2 dengan Glass Box & Inter-Border */
@@ -626,10 +503,6 @@
       grid-template-columns: 1fr;
       gap: 50px;
     }
-
-    .asset-lead {
-      max-width: 100%;
-    }
   }
 
   @media (max-width: 640px) {
@@ -646,72 +519,15 @@
     .asset-card:last-child {
       border-bottom: none !important;
     }
-
-    .asset-section {
-      padding: 50px 0;
-    }
   }
 
   /* ===========================================================
      Business Sectors Section
      =========================================================== */
-  .sectors-section {
-    width: 100%;
-    background-color: #f2f4f7; /* Background light gray/blue subtle */
-    padding: clamp(60px, 8vw, 100px) 0;
-    box-sizing: border-box;
-    font-family: var(
-      --font-main,
-      "Plus Jakarta Sans",
-      -apple-system,
-      sans-serif
-    );
-    color: #0d1e38;
-  }
-
-  .sectors-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-    box-sizing: border-box;
-  }
 
   /* Badge & Bar Header */
   .sectors-intro {
     margin-bottom: 48px;
-  }
-
-  .sectors-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .sectors-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .sectors-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #0d1e38;
-    line-height: 1.15;
-    margin: 0 0 16px 0;
-    letter-spacing: -0.02em;
-  }
-
-  .sectors-lead {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin: 0;
   }
 
   /* Grid Layout (2 Columns) */
@@ -775,16 +591,6 @@
 
     .sectors-card {
       padding: 28px 24px;
-    }
-
-    .sectors-title br {
-      display: none;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .sectors-section {
-      padding: 40px 0;
     }
   }
 </style>

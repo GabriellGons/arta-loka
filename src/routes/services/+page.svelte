@@ -120,9 +120,7 @@
   />
 </svelte:head>
 
-<!-- ============================================================
-     Hero / Page Header
-     ============================================================ -->
+<!-- Hero / Page Header -->
 <section class="about-hero" aria-label="About Us Hero">
   <div class="about-hero-inner">
     <span class="hero-badge">Services</span>
@@ -136,16 +134,16 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Core Services Section
-     ============================================================ -->
-<section class="services-section" aria-label="Core Services">
-  <div class="services-container">
+<!-- Core Services Section -->
+<section class="section-light" aria-label="Core Services">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="services-intro">
-      <span class="services-badge">CORE SERVICES</span>
-      <div class="services-badge-bar" aria-hidden="true"></div>
-      <h2 class="services-title">Delapan lini layanan</h2>
+      <div class="tagline-wrapper">
+        <span class="tagline">CORE SERVICES</span>
+        <span class="tagline-bar" aria-hidden="true"></span>
+      </div>
+      <h2 class="title-dark">Delapan lini layanan</h2>
     </div>
 
     <!-- Services List -->
@@ -166,18 +164,18 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Deliverables Section (Dark Navy)
-     ============================================================ -->
-<section class="deliverables-section" aria-label="Deliverables">
+<!-- Deliverables Section -->
+<section class="section-dark" aria-label="Deliverables">
   <div class="deliverables-container">
     <!-- KOLOM KIRI: INTRO & HEADLINE -->
     <div class="deliverables-intro-col">
       <div class="deliverables-intro">
-        <span class="deliverables-badge">DELIVERABLES</span>
-        <div class="deliverables-badge-bar" aria-hidden="true"></div>
-        <h2 class="deliverables-title">Apa yang mitra terima</h2>
-        <p class="deliverables-lead">
+        <div class="tagline-wrapper">
+          <span class="tagline">DELIVERABLES</span>
+          <div class="tagline-bar" aria-hidden="true"></div>
+        </div>
+        <h2 class="title-light">Apa yang mitra terima</h2>
+        <p class="desc-light">
           Setiap penugasan menghasilkan output yang konkret dan dapat dieksekusi
           oleh para pihak.
         </p>
@@ -197,15 +195,15 @@
   </div>
 </section>
 
-<!-- ============================================================
-     Development Cycle Section
-     ============================================================ -->
-<section class="cycle-section" aria-label="Development Cycle">
-  <div class="cycle-container">
+<!-- Development Cycle Section -->
+<section class="section-light" aria-label="Development Cycle">
+  <div class="container">
     <!-- Badge & Heading -->
     <div class="cycle-intro">
-      <span class="cycle-badge">HOW WE WORK</span>
-      <div class="cycle-badge-bar" aria-hidden="true"></div>
+      <div class="tagline-wrapper">
+        <span class="tagline">HOW WE WORK</span>
+        <div class="tagline-bar" aria-hidden="true"></div>
+      </div>
       <h2 class="cycle-title">Arta Loka Development Cycle</h2>
       <p class="cycle-lead">
         Tujuh tahap kerja yang menjadi standar pendampingan proyek.
@@ -299,51 +297,10 @@
   /* ===========================================================
      Core Services Section
      =========================================================== */
-  .services-section {
-    width: 100%;
-    background-color: #ffffff;
-    padding: clamp(60px, 8vw, 100px) 0;
-    box-sizing: border-box;
-    font-family: var(--font-main, "Plus Jakarta Sans", sans-serif);
-    color: #0d1e38;
-  }
-
-  .services-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-    box-sizing: border-box;
-  }
 
   /* Header Group */
   .services-intro {
     margin-bottom: 56px;
-  }
-
-  .services-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .services-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 24px;
-  }
-
-  .services-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-    letter-spacing: -0.02em;
   }
 
   /* Services List Layout */
@@ -369,7 +326,7 @@
   .services-number {
     font-size: 2.2rem;
     font-weight: 800;
-    color: #dde2ea;
+    color: #c5cbd5;
     line-height: 1;
     letter-spacing: -0.03em;
   }
@@ -418,42 +375,11 @@
     .services-item-title {
       padding-right: 0;
     }
-
-    .services-section {
-      padding: 40px 0;
-    }
   }
 
   /* ===========================================================
      Deliverables Section
      =========================================================== */
-  .deliverables-section {
-    width: 100%;
-    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 60%, #0a1e36 100%);
-    color: #ffffff;
-    padding: clamp(80px, 10vw, 120px) 0;
-    box-sizing: border-box;
-    font-family: var(
-      --font-main,
-      "Plus Jakarta Sans",
-      -apple-system,
-      sans-serif
-    );
-    position: relative;
-    overflow: hidden;
-  }
-
-  .deliverables-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at 70% 50%,
-      rgba(215, 159, 57, 0.05) 0%,
-      transparent 65%
-    );
-    pointer-events: none;
-  }
 
   .deliverables-container {
     width: 100%;
@@ -471,41 +397,6 @@
   .deliverables-intro-col {
     display: flex;
     flex-direction: column;
-  }
-
-  .deliverables-badge {
-    font-size: 12.5px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-gold, #d79f39);
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .deliverables-badge-bar {
-    width: 44px;
-    height: 3px;
-    background-color: var(--color-gold, #d79f39);
-    border-radius: 1px;
-    margin-bottom: 24px;
-  }
-
-  .deliverables-title {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    margin: 0 0 24px 0;
-  }
-
-  .deliverables-lead {
-    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-    line-height: 1.7;
-    color: #9ab2cb;
-    margin: 0;
-    max-width: 480px;
   }
 
   /* Kolom Kanan Styling (List & Box Shadow Effect) */
@@ -552,16 +443,6 @@
       gap: 48px;
     }
 
-    .deliverables-lead {
-      max-width: 100%;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .deliverables-section {
-      padding: 50px 0;
-    }
-
     .deliverables-item {
       padding: 18px 20px;
     }
@@ -574,43 +455,10 @@
   /* ===========================================================
      Development Cycle Section
      =========================================================== */
-  .cycle-section {
-    width: 100%;
-    background-color: #f2f4f7; /* Background abu-abu muda terang sesuai gambar */
-    padding: clamp(60px, 8vw, 100px) 0;
-    box-sizing: border-box;
-    font-family: var(--font-main, "Plus Jakarta Sans", sans-serif);
-    color: #0d1e38;
-  }
-
-  .cycle-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 4vw, 56px);
-    box-sizing: border-box;
-  }
 
   /* Badge & Bar Header */
   .cycle-intro {
     margin-bottom: 48px;
-  }
-
-  .cycle-badge {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-gold, #c08d2b);
-    display: block;
-  }
-
-  .cycle-badge-bar {
-    width: 40px;
-    height: 3px;
-    background-color: var(--color-gold, #c08d2b);
-    margin-top: 8px;
-    margin-bottom: 24px;
   }
 
   .cycle-title {
@@ -687,10 +535,6 @@
   @media (max-width: 640px) {
     .cycle-grid {
       grid-template-columns: 1fr;
-    }
-
-    .cycle-section {
-      padding: 40px 0;
     }
   }
 </style>
