@@ -979,79 +979,6 @@
   </div>
 </section>
 
-<!-- Development Cycle -->
-<section
-  id="development-cycle"
-  class="section-dark"
-  aria-label="Development Cycle"
->
-  <div class="container">
-    <!-- Header Row -->
-    <div class="cycle-header">
-      <div class="cycle-header-left">
-        <div class="tagline-wrapper">
-          <span class="tagline">DEVELOPMENT CYCLE</span>
-          <span class="tagline-bar" aria-hidden="true"></span>
-        </div>
-        <h2 class="title-light">
-          From potential to<br />sustainable business.
-        </h2>
-      </div>
-      <div class="cycle-header-right">
-        <p class="desc-light">
-          Metodologi sistematis untuk mengawal peluang dari identifikasi hingga
-          ekspansi.
-        </p>
-      </div>
-    </div>
-
-    <!-- Accordion Steps Grid -->
-    <div class="cycle-grid">
-      {#each developmentCycles as step, index}
-        {@const isOpen = openCycleIndex === index}
-        <button
-          class="cycle-step"
-          class:open={isOpen}
-          onclick={() => (openCycleIndex = isOpen ? null : index)}
-          aria-expanded={isOpen}
-        >
-          <div class="step-top">
-            <span class="step-number">{step.number}</span>
-            <span class="step-toggle" aria-hidden="true"
-              >{isOpen ? "×" : "+"}</span
-            >
-          </div>
-          <div class="step-body">
-            <p class="step-desc" class:step-desc-visible={isOpen}>
-              {step.desc}
-            </p>
-            <h3 class="step-title">{step.title}</h3>
-          </div>
-        </button>
-      {/each}
-    </div>
-    <!-- Bottom CTA Button -->
-    <div class="business-action">
-      <a href="/projects" class="button-dark">
-        <span>Our Projects</span>
-        <svg
-          class="button-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- Project & Portfolio -->
 <section class="section-dark" aria-label="Project and Portfolio">
   <div class="container">
@@ -1190,6 +1117,37 @@
   </div>
 </section>
 
+<!-- Management & Corporate Legality -->
+<section class="section-dark" aria-label="Management and Legality">
+  <div class="container">
+    <!-- BAGIAN 1 (ATAS): MANAGEMENT / LEADERSHIP TEAM -->
+    <div class="management-block">
+      <div class="section-intro">
+        <div class="tagline-wrapper">
+          <span class="tagline">MANAGEMENT</span>
+          <span class="tagline-bar" aria-hidden="true"></span>
+        </div>
+        <h2 class="title-light">Leadership team</h2>
+      </div>
+
+      <!-- Grid 2x2 Leadership Cards -->
+      <div class="leadership-grid">
+        {#each leadershipTeam as person}
+          <div class="leader-card">
+            <div class="leader-info">
+              <h3 class="leader-name">{person.name}</h3>
+              <p class="leader-role">{person.role}</p>
+            </div>
+            <div class="leader-card-line" aria-hidden="true"></div>
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    
+  </div>
+</section>
+
 <!-- ESG & Corporate Journey -->
 <section class="section-light" aria-label="ESG Impact and Corporate Journey">
   <div class="impact-journey-container">
@@ -1304,32 +1262,6 @@
 <!-- Management & Corporate Legality -->
 <section class="section-dark" aria-label="Management and Legality">
   <div class="container">
-    <!-- BAGIAN 1 (ATAS): MANAGEMENT / LEADERSHIP TEAM -->
-    <div class="management-block">
-      <div class="section-intro">
-        <div class="tagline-wrapper">
-          <span class="tagline">MANAGEMENT</span>
-          <span class="tagline-bar" aria-hidden="true"></span>
-        </div>
-        <h2 class="title-light">Leadership team</h2>
-      </div>
-
-      <!-- Grid 2x2 Leadership Cards -->
-      <div class="leadership-grid">
-        {#each leadershipTeam as person}
-          <div class="leader-card">
-            <div class="leader-info">
-              <h3 class="leader-name">{person.name}</h3>
-              <p class="leader-role">{person.role}</p>
-            </div>
-            <div class="leader-card-line" aria-hidden="true"></div>
-          </div>
-        {/each}
-      </div>
-    </div>
-
-    <!-- SEPARATOR LINE -->
-    <div class="vertical-divider" aria-hidden="true"></div>
 
     <!-- BAGIAN 2 (BAWAH): CORPORATE LEGALITY -->
     <div class="legality-block">
