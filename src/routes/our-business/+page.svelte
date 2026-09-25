@@ -157,7 +157,7 @@
         <span class="tagline">BUSINESS ECOSYSTEM</span>
         <span class="tagline-bar" aria-hidden="true"></span>
       </div>
-      <h2 class="title-dark">Enam simpul ekosistem proyek</h2>
+      <h2 class="title-dark">Six Ecosystem Nodes</h2>
     </div>
 
     <!-- 3x2 Ecosystem Grid -->

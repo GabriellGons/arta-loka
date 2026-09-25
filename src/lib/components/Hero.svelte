@@ -187,7 +187,7 @@
 	}
 
 	.hero-content {
-		max-width: 980px;
+		max-width: 1020px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -221,7 +221,7 @@
 
 	/* Editorial Serif Headline */
 	.hero-headline {
-		font-family: var(--font-serif);
+		font-family: var(--font-main);
 		font-size: clamp(2.6rem, 5.4vw, 4.85rem);
 		font-weight: 700;
 		line-height: 1.14;

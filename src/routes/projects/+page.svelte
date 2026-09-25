@@ -194,7 +194,7 @@
     <div class="portfolio-intro">
       <span class="portfolio-badge">PORTFOLIO GALLERY</span>
       <div class="portfolio-badge-bar" aria-hidden="true"></div>
-      <h2 class="portfolio-title">Pilih kategori pengembangan</h2>
+      <h2 class="portfolio-title">Development Categories</h2>
     </div>
 
     <!-- Navigation Tabs -->

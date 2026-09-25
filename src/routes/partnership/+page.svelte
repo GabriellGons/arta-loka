@@ -33,7 +33,7 @@
         <span class="tagline">PARTNERSHIP TRACKS</span>
         <div class="tagline-bar" aria-hidden="true"></div>
       </div>
-      <h2 class="title-dark">Mulai dari apa yang Anda miliki</h2>
+      <h2 class="title-dark">Start With What You Have</h2>
     </div>
 
     <!-- 5-Column Tracks Grid -->
@@ -106,7 +106,7 @@
           <span class="tagline">VALUE CREATION</span>
           <div class="tagline-bar" aria-hidden="true"></div>
         </div>
-        <h2 class="title-light">Peran kami dalam struktur kemitraan</h2>
+        <h2 class="title-light">Our Role In The Partnership Structure</h2>
       </div>
 
       <div class="role-list">
@@ -152,7 +152,7 @@
           <span class="tagline">WORKING METHOD</span>
           <div class="tagline-bar" aria-hidden="true"></div>
         </div>
-        <h2 class="title-light">Tahapan kerja sama</h2>
+        <h2 class="title-light">Stages Of Cooperation</h2>
       </div>
 
       <!-- Grid 2-Kolom Rapi untuk 7 Tahapan -->
@@ -239,98 +239,6 @@
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Open For / Partnership Grid -->
-<section class="section-light" aria-label="Open For Partnerships">
-  <div class="container">
-    <!-- Header Section (Sub-title, Title, & Instruction) -->
-    <div class="openfor-header">
-      <div class="openfor-title-group">
-        <div class="tagline-wrapper">
-          <span class="tagline">OPEN FOR</span>
-          <div class="tagline-bar" aria-hidden="true"></div>
-        </div>
-        <h2 class="title-dark">
-          Punya salah satu dari ini? Mari terhubung.
-        </h2>
-      </div>
-    </div>
-
-    <!-- 4-Column Partnership Cards Grid -->
-    <div class="openfor-grid">
-      <!-- Card 1: Asset -->
-      <button type="button" class="openfor-card" aria-label="Kemitraan Asset">
-        <div class="card-corner top-left" aria-hidden="true"></div>
-        <div class="card-corner top-right" aria-hidden="true"></div>
-        <div class="card-corner bottom-left" aria-hidden="true"></div>
-        <div class="card-corner bottom-right" aria-hidden="true"></div>
-
-        <div class="openfor-card-header">
-          <h3 class="openfor-card-title">Asset</h3>
-          <span class="openfor-card-icon" aria-hidden="true">×</span>
-        </div>
-        <p class="openfor-card-desc">
-          Lahan, properti, atau sumber daya yang belum dikembangkan secara
-          optimal.
-        </p>
-      </button>
-
-      <!-- Card 2: Technology -->
-      <button
-        type="button"
-        class="openfor-card"
-        aria-label="Kemitraan Technology"
-      >
-        <div class="card-corner top-left" aria-hidden="true"></div>
-        <div class="card-corner top-right" aria-hidden="true"></div>
-        <div class="card-corner bottom-left" aria-hidden="true"></div>
-        <div class="card-corner bottom-right" aria-hidden="true"></div>
-
-        <div class="openfor-card-header">
-          <h3 class="openfor-card-title">Technology</h3>
-          <span class="openfor-card-icon" aria-hidden="true">×</span>
-        </div>
-        <p class="openfor-card-desc">
-          Solusi digital, energi, atau sistem yang siap diimplementasikan pada
-          proyek nyata.
-        </p>
-      </button>
-
-      <!-- Card 3: Capital -->
-      <button type="button" class="openfor-card" aria-label="Kemitraan Capital">
-        <div class="card-corner top-left" aria-hidden="true"></div>
-        <div class="card-corner top-right" aria-hidden="true"></div>
-        <div class="card-corner bottom-left" aria-hidden="true"></div>
-        <div class="card-corner bottom-right" aria-hidden="true"></div>
-
-        <div class="openfor-card-header">
-          <h3 class="openfor-card-title">Capital</h3>
-          <span class="openfor-card-icon" aria-hidden="true">×</span>
-        </div>
-        <p class="openfor-card-desc">
-          Pendanaan untuk proyek yang telah melalui kajian kelayakan.
-        </p>
-      </button>
-
-      <!-- Card 4: Market -->
-      <button type="button" class="openfor-card" aria-label="Kemitraan Market">
-        <div class="card-corner top-left" aria-hidden="true"></div>
-        <div class="card-corner top-right" aria-hidden="true"></div>
-        <div class="card-corner bottom-left" aria-hidden="true"></div>
-        <div class="card-corner bottom-right" aria-hidden="true"></div>
-
-        <div class="openfor-card-header">
-          <h3 class="openfor-card-title">Market</h3>
-          <span class="openfor-card-icon" aria-hidden="true">×</span>
-        </div>
-        <p class="openfor-card-desc">
-          Akses distribusi dan permintaan yang membutuhkan pasokan dari proyek
-          yang dikembangkan.
-        </p>
-      </button>
     </div>
   </div>
 </section>
@@ -652,140 +560,6 @@
 
     .step-card-full {
       grid-column: span 1;
-    }
-  }
-
-  /* ===========================================================
-     Open For Section
-     =========================================================== */
-
-  /* Header Group */
-  .openfor-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 24px;
-    margin-bottom: 48px;
-  }
-
-  .openfor-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  /* Grid Layout (4 Kartu Sejajar) */
-  .openfor-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
-
-  /* Card Item & Interactive Styling */
-  .openfor-card {
-    position: relative;
-    background: #f8fafc;
-    border: none;
-    outline: none;
-    padding: 32px 24px;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .openfor-card:hover {
-    background-color: #ffffff;
-    transform: translateY(-2px);
-  }
-
-  /* Aksen Sudut Siku Emas */
-  .card-corner {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    pointer-events: none;
-  }
-
-  .card-corner.top-left {
-    top: 0;
-    left: 0;
-    border-top: 1.5px solid var(--color-gold, #c08d2b);
-    border-left: 1.5px solid var(--color-gold, #c08d2b);
-  }
-
-  .card-corner.top-right {
-    top: 0;
-    right: 0;
-    border-top: 1.5px solid var(--color-gold, #c08d2b);
-    border-right: 1.5px solid var(--color-gold, #c08d2b);
-  }
-
-  .card-corner.bottom-left {
-    bottom: 0;
-    left: 0;
-    border-bottom: 1.5px solid var(--color-gold, #c08d2b);
-    border-left: 1.5px solid var(--color-gold, #c08d2b);
-  }
-
-  .card-corner.bottom-right {
-    bottom: 0;
-    right: 0;
-    border-bottom: 1.5px solid var(--color-gold, #c08d2b);
-    border-right: 1.5px solid var(--color-gold, #c08d2b);
-  }
-
-  /* Card Content */
-  .openfor-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .openfor-card-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: #0d1e38;
-    margin: 0;
-  }
-
-  .openfor-card-icon {
-    font-size: 1.1rem;
-    color: var(--color-gold, #c08d2b);
-    line-height: 1;
-    font-weight: 300;
-  }
-
-  .openfor-card-desc {
-    font-size: 0.875rem;
-    color: #64748b;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .openfor-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .openfor-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .openfor-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
     }
   }
 </style>

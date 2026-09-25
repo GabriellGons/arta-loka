@@ -30,7 +30,7 @@
         <span class="tagline">DOCUMENT STATUS</span>
         <div class="tagline-bar" aria-hidden="true"></div>
       </div>
-      <h2 class="title-dark">Legalitas &amp; perizinan perusahaan</h2>
+      <h2 class="title-dark">Company Legal Status &amp; Licensing</h2>
     </div>
 
     <!-- 3-Column Document Cards Grid -->

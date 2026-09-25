@@ -1,108 +1,8 @@
 <script lang="ts">
-  interface NewsArticle {
-    id: number;
-    categoryId: string;
-    title: string;
-    date: string;
-    excerpt: string;
-    image: string;
-    readTime: string;
-  }
-
-  interface NewsCategory {
-    id: string;
-    label: string;
-  }
+  import { articles, categories } from "$lib/data/news";
 
   // State Kategori Aktif (Default: 'all' atau 'corporate')
   let activeTab = $state("all");
-
-  // Daftar Kategori Berita
-  const categories: NewsCategory[] = [
-    { id: "all", label: "ALL NEWS" },
-    { id: "corporate", label: "CORPORATE NEWS" },
-    { id: "project", label: "PROJECT UPDATE" },
-    { id: "energy-tech", label: "ENERGY & TECHNOLOGY" },
-    { id: "maritime", label: "MARITIME DEVELOPMENT" },
-    { id: "asset-invest", label: "ASSET & INVESTMENT" },
-    { id: "community", label: "COMMUNITY DEVELOPMENT" },
-  ];
-
-  // Sample Data Berita
-  const articles: NewsArticle[] = [
-    {
-      id: 1,
-      categoryId: "corporate",
-      title:
-        "PT Arta Loka Wisala Memperkuat Struktur Kemitraan Strategis Kawasan",
-      date: "12 Sep 2026",
-      excerpt:
-        "Langkah strategis perusahaan dalam membangun integrasi ekosistem bisnis lintas sektoral untuk optimalisasi aset.",
-      image:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
-      readTime: "3 min read",
-    },
-    {
-      id: 2,
-      categoryId: "energy-tech",
-      title:
-        "Implementasi Sistem Hybrid PLTS & BESS pada Kawasan Industri Terpadu",
-      date: "08 Sep 2026",
-      excerpt:
-        "Mendorong efisiensi konsumsi energi dan keandalan pasokan listrik hijau jangka panjang bagi para tenant.",
-      image:
-        "https://images.unsplash.com/photo-1509391365360-2e959784a276?q=80&w=800&auto=format&fit=crop",
-      readTime: "4 min read",
-    },
-    {
-      id: 3,
-      categoryId: "maritime",
-      title:
-        "Pengembangan Rantai Dingin Terintegrasi di Wilayah Pesisir Jawa Timur",
-      date: "02 Sep 2026",
-      excerpt:
-        "Fasilitas cold storage modern bertenaga terbarukan siap menopang daya saing hasil tangkapan nelayan lokal.",
-      image:
-        "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=800&auto=format&fit=crop",
-      readTime: "5 min read",
-    },
-    {
-      id: 4,
-      categoryId: "asset-invest",
-      title:
-        "Unlocking Asset Value: Optimalisasi Lahan & Komersialisasi Properti",
-      date: "28 Agu 2026",
-      excerpt:
-        "Kajian kelayakan dan pemetaan potensi aset tidur menjadi sarana usaha produktif bernilai tinggi.",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-      readTime: "3 min read",
-    },
-    {
-      id: 5,
-      categoryId: "community",
-      title:
-        "Program Pemberdayaan Ekonomi Koperasi & Kemitraan Tenaga Kerja Lokal",
-      date: "20 Agu 2026",
-      excerpt:
-        "Membangun iklim kemitraan inklusif yang memberikan dampak ekonomi langsung bagi masyarakat sekitar.",
-      image:
-        "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
-      readTime: "4 min read",
-    },
-    {
-      id: 6,
-      categoryId: "project",
-      title:
-        "Update Progres Pembangunan Command Center & Infrastructure Monitoring",
-      date: "15 Agu 2026",
-      excerpt:
-        "Fasilitas pengawasan berbasis AI dan IoT memasuki tahap integrasi data akhir sebelum beroperasi penuh.",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-      readTime: "4 min read",
-    },
-  ];
 
   // Filtering Berita berdasarkan Tab Aktif (Menggunakan Rune $derived)
   let filteredArticles = $derived(
@@ -144,7 +44,7 @@
     <div class="news-intro">
       <span class="news-badge">MEDIA & UPDATES</span>
       <div class="news-badge-bar" aria-hidden="true"></div>
-      <h2 class="news-title">Informasi & berita terkini</h2>
+      <h2 class="news-title">Latest Information & News</h2>
       <p class="news-lead">
         Temukan update terbaru mengenai proyek, perkembangan teknologi, dan
         aktivitas ekosistem perusahaan.

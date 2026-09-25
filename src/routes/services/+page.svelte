@@ -143,7 +143,7 @@
         <span class="tagline">CORE SERVICES</span>
         <span class="tagline-bar" aria-hidden="true"></span>
       </div>
-      <h2 class="title-dark">Delapan lini layanan</h2>
+      <h2 class="title-dark">Eight Service Lines</h2>
     </div>
 
     <!-- Services List -->
@@ -174,7 +174,7 @@
           <span class="tagline">DELIVERABLES</span>
           <div class="tagline-bar" aria-hidden="true"></div>
         </div>
-        <h2 class="title-light">Apa yang mitra terima</h2>
+        <h2 class="title-light">What Partners Receive</h2>
         <p class="desc-light">
           Setiap penugasan menghasilkan output yang konkret dan dapat dieksekusi
           oleh para pihak.

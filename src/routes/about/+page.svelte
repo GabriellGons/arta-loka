@@ -118,13 +118,6 @@
         </p>
       </div>
     </div>
-
-    <!-- Keyword Tags -->
-    <div class="keyword-strip" aria-label="Key Focus Areas">
-      {#each ["ASSET", "STRATEGY", "NETWORK", "TECHNOLOGY", "CAPITAL", "MARKET"] as tag}
-        <span class="keyword-tag">{tag}</span>
-      {/each}
-    </div>
   </div>
 </section>
 
@@ -222,7 +215,7 @@
       <div class="organization-intro">
         <span class="organization-badge">MANAGEMENT</span>
         <div class="organization-badge-bar" aria-hidden="true"></div>
-        <h2 class="organization-title">Struktur organisasi</h2>
+        <h2 class="organization-title">Organization Structure</h2>
       </div>
 
       <!-- Grid Management (2x2) -->
@@ -248,7 +241,7 @@
       <div class="organization-intro">
         <span class="organization-badge">FUNCTIONAL STRUCTURE</span>
         <div class="organization-badge-bar" aria-hidden="true"></div>
-        <h2 class="organization-title">Fungsi pengembangan</h2>
+        <h2 class="organization-title">Development Functions</h2>
       </div>
 
       <!-- Daftar Fungsi Pengembangan -->
@@ -380,13 +373,13 @@
   .positioning-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: 1px solid #e2e7ee;
+    border: 2px solid var(--color-gold);
     margin-bottom: 40px;
   }
 
   .pos-card {
     padding: 36px 32px 40px 32px;
-    border-right: 1px solid #e2e7ee;
+    border-right: 2px solid var(--color-gold);
   }
 
   .pos-card:last-child {
@@ -409,33 +402,6 @@
     line-height: 1.65;
     color: #0d1e34;
     margin: 0;
-  }
-
-  /* Keyword Tags */
-  .keyword-strip {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .keyword-tag {
-    display: inline-block;
-    font-family: var(--font-main);
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: #3c5268;
-    border: 1px solid #cdd5df;
-    border-radius: 2px;
-    padding: 7px 14px;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-
-  .keyword-tag:hover {
-    border-color: var(--color-gold, #d79f39);
-    color: var(--color-gold, #d79f39);
   }
 
   /* ===========================================================

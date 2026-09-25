@@ -1,246 +1,469 @@
 <script lang="ts">
-	interface Props {
-		badge?: string;
-		title?: string;
-		description?: string;
-		primaryText?: string;
-		primaryHref?: string;
-		onPrimaryClick?: () => void;
-		onSecondaryClick?: () => void;
-	}
+  interface Props {
+    badge?: string;
+    title?: string;
+    description?: string;
+    primaryText?: string;
+    primaryHref?: string;
+  }
 
-	let {
-		badge = 'STRATEGIC PARTNERSHIP',
-		title = 'Have an asset, project or\nbusiness opportunity?',
-		description = "Let's develop its value together. Diskusikan potensi aset Anda dengan tim pengembangan kami.",
-		primaryText = 'BECOME OUR PARTNER',
-		primaryHref = '/contact',
-		onPrimaryClick,
-		onSecondaryClick
-	}: Props = $props();
+  let {
+    badge = "LET'S BUILD TOGETHER",
+    title = "Have an asset, project or business opportunity?",
+    description = "Let’s develop its value together. Diskusikan potensi aset Anda dengan tim pengembangan kami.",
+    primaryText = "PARTNERSHIP INQUIRY",
+    primaryHref = "/partnership",
+  }: Props = $props();
 </script>
 
 <section class="cta-banner" aria-label="Strategic Partnership CTA">
-	<!-- Ambient Background Glow & Subtle Grid Line -->
-	<div class="cta-ambient-glow" aria-hidden="true"></div>
-	<div class="cta-center-divider" aria-hidden="true"></div>
+  <div class="cta-container">
+    <!-- Left Side: Copywriting -->
+    <div class="cta-left">
+      <div class="tagline-group">
+        <span class="cta-badge">{badge}</span>
+        <div class="cta-badge-bar" aria-hidden="true"></div>
+      </div>
 
-	<div class="cta-container">
-		<!-- Left Side: Copywriting -->
-		<div class="cta-content">
-			<span class="cta-badge">{badge}</span>
+      <h2 class="cta-title">
+        {#if title.includes("\n")}
+          {#each title.split("\n") as line, idx}
+            {#if idx > 0}<br class="desktop-br" />{/if}{line}
+          {/each}
+        {:else}
+          {title}
+        {/if}
+      </h2>
 
-			<h2 class="cta-title">
-				{#if title.includes('\n')}
-					{#each title.split('\n') as line, idx}
-						{#if idx > 0}<br class="desktop-br" />{/if}{line}
-					{/each}
-				{:else}
-					{title}
-				{/if}
-			</h2>
+      <p class="cta-description">
+        {description}
+      </p>
+    </div>
 
-			<p class="cta-description">
-				{description}
-			</p>
-		</div>
+    <!-- Right Side: Get In Touch & Contact Info -->
+    <div class="cta-right">
+      <span class="get-in-touch-badge">GET IN TOUCH</span>
 
-		<!-- Right Side: Action Buttons -->
-		<div class="cta-actions">
-			<a
-				href={primaryHref}
-				class="btn-gold"
-				onclick={(e) => {
-					if (onPrimaryClick) {
-						e.preventDefault();
-						onPrimaryClick();
-					}
-				}}
-			>
-				{primaryText}
-			</a>
-		</div>
-	</div>
+      <div class="contact-list">
+        <!-- Row 1: Our Office -->
+        <div class="contact-item">
+          <div class="contact-icon-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <h3 class="contact-title">Our Office</h3>
+            <p class="contact-desc">
+              Jl. Wisma Pagesangan II No. 29, Kel. Pagesangan, Kec. Jambangan,
+              Surabaya, Jawa Timur 60233
+            </p>
+          </div>
+          <a
+            href="https://maps.google.com/?q=Jl.+Wisma+Pagesangan+II+No.+29,+Surabaya"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-action-btn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>VIEW ON GOOGLE MAPS</span>
+          </a>
+        </div>
+
+        <!-- Row 2: WhatsApp -->
+        <div class="contact-item">
+          <div class="contact-icon-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+              ></path>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <h3 class="contact-title">WhatsApp</h3>
+            <p class="contact-desc">
+              ·&nbsp;Director: 08127602079<br />
+              ·&nbsp;Office: 0813 2023 809
+            </p>
+          </div>
+          <a
+            href="https://wa.me/628127602079"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-action-btn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+              ></path>
+            </svg>
+            <span>CHAT ON WHATSAPP</span>
+          </a>
+        </div>
+
+        <!-- Row 3: Email -->
+        <div class="contact-item">
+          <div class="contact-icon-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <h3 class="contact-title">Email</h3>
+            <p class="contact-desc">artalokawisala@gmail.com</p>
+          </div>
+          <a href="mailto:artalokawisala@gmail.com" class="contact-action-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>SEND EMAIL</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom Full-Width Gold Button -->
+      <a href={primaryHref} class="btn-partnership-gold">
+        <div class="btn-inner">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span>{primaryText}</span>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="arrow-icon"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
 
 <style>
-	.cta-banner {
-		position: relative;
-		width: 100%;
-		background-color: #0c233c;
-		background-image: 
-			radial-gradient(circle at 75% 50%, rgba(28, 70, 112, 0.45) 0%, transparent 60%),
-			linear-gradient(180deg, rgba(8, 20, 36, 0.6) 0%, rgba(12, 35, 60, 0.95) 50%, rgba(8, 20, 36, 0.6) 100%);
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-		padding: clamp(60px, 7vw, 90px) clamp(24px, 5.5vw, 84px);
-		overflow: hidden;
-	}
+  .cta-banner {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(160deg, #071b38 0%, #0d2a4d 65%, #0a1e36 100%);
+    color: #ffffff;
+    padding: clamp(60px, 8vw, 100px) 0;
+    box-sizing: border-box;
+    font-family: var(
+      --font-main,
+      "Plus Jakarta Sans",
+      -apple-system,
+      sans-serif
+    );
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-	/* Subtle decorative vertical divider in middle background */
-	.cta-center-divider {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 50%;
-		width: 1px;
-		background: linear-gradient(
-			180deg,
-			rgba(255, 255, 255, 0) 0%,
-			rgba(255, 255, 255, 0.05) 30%,
-			rgba(255, 255, 255, 0.05) 70%,
-			rgba(255, 255, 255, 0) 100%
-		);
-		pointer-events: none;
-	}
+  .cta-container {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 56px);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
 
-	.cta-ambient-glow {
-		position: absolute;
-		top: -30%;
-		right: 15%;
-		width: 450px;
-		height: 350px;
-		background: radial-gradient(circle, rgba(215, 159, 57, 0.08) 0%, transparent 70%);
-		pointer-events: none;
-	}
+  /* Left Side Column */
+  .cta-left {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    padding-right: clamp(30px, 5vw, 60px);
+  }
 
-	.cta-container {
-		position: relative;
-		z-index: 2;
-		max-width: 1400px;
-		margin: 0 auto;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 40px;
-	}
+  .tagline-group {
+    margin-bottom: 24px;
+  }
 
-	/* Content Area */
-	.cta-content {
-		max-width: 640px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
+  .cta-badge {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold, #d79f39);
+    display: block;
+    margin-bottom: 10px;
+  }
 
-	.cta-badge {
-		font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
-		font-size: 11.5px;
-		font-weight: 800;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--color-gold, #d79f39);
-		margin-bottom: 16px;
-		display: inline-block;
-	}
+  .cta-badge-bar {
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-gold, #d79f39);
+    border-radius: 1px;
+  }
 
-	.cta-title {
-		font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
-		font-size: clamp(1.9rem, 3vw, 2.75rem);
-		font-weight: 800;
-		line-height: 1.18;
-		letter-spacing: -0.015em;
-		color: #ffffff;
-		margin: 0 0 16px 0;
-	}
+  .cta-title {
+    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+  }
 
-	.cta-description {
-		font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
-		font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-		line-height: 1.65;
-		color: #94a3b8;
-		max-width: 520px;
-		margin: 0;
-		font-weight: 400;
-	}
+  .cta-description {
+    font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+    line-height: 1.65;
+    color: #9ab2cb;
+    margin: 0;
+    max-width: 520px;
+  }
 
-	/* Action Buttons Area */
-	.cta-actions {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-		flex-shrink: 0;
-	}
+  /* Right Side Column */
+  .cta-right {
+    display: flex;
+    flex-direction: column;
+  }
 
-	.btn-gold {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 16px 32px;
-		background-color: var(--color-gold, #d79f39);
-		color: #0d1e33;
-		text-decoration: none;
-		font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
-		font-size: 12.5px;
-		font-weight: 800;
-		letter-spacing: 0.07em;
-		text-transform: uppercase;
-		white-space: nowrap;
-		border-radius: 2px;
-		transition: all 0.25s ease;
-		box-shadow: 0 8px 24px rgba(215, 159, 57, 0.32);
-		border: 1px solid transparent;
-	}
+  .get-in-touch-badge {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold, #d79f39);
+    margin-bottom: 28px;
+    display: block;
+  }
 
-	.btn-gold:hover {
-		background-color: var(--color-gold-hover, #e5af4b);
-		transform: translateY(-2px);
-		box-shadow: 0 12px 28px rgba(215, 159, 57, 0.48);
-	}
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
 
-	.btn-outline {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 16px 32px;
-		background-color: transparent;
-		color: #ffffff;
-		text-decoration: none;
-		font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
-		font-size: 12.5px;
-		font-weight: 700;
-		letter-spacing: 0.07em;
-		text-transform: uppercase;
-		white-space: nowrap;
-		border-radius: 2px;
-		border: 1px solid rgba(255, 255, 255, 0.24);
-		transition: all 0.25s ease;
-	}
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-	.btn-outline:hover {
-		background-color: rgba(255, 255, 255, 0.08);
-		border-color: rgba(255, 255, 255, 0.65);
-		transform: translateY(-2px);
-	}
+  .contact-item:first-child {
+    padding-top: 0;
+  }
 
-	/* Responsive Breakpoint */
-	@media (max-width: 960px) {
-		.cta-container {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 32px;
-		}
+  .contact-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold, #d79f39);
+    flex-shrink: 0;
+  }
 
-		.cta-actions {
-			width: 100%;
-			flex-direction: row;
-			flex-wrap: wrap;
-		}
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 
-		.cta-center-divider {
-			display: none;
-		}
-	}
+  .contact-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+  }
 
-	@media (max-width: 580px) {
-		.cta-actions {
-			flex-direction: column;
-			align-items: stretch;
-		}
+  .contact-desc {
+    font-size: 0.8rem;
+    color: #9ab2cb;
+    line-height: 1.45;
+    margin: 0;
+    max-width: 280px;
+  }
 
-		.btn-gold,
-		.btn-outline {
-			width: 100%;
-		}
-	}
+  .contact-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 8px 14px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .contact-action-btn svg {
+    color: #ffffff;
+  }
+
+  .contact-action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+  }
+
+  /* Bottom Gold Button */
+  .btn-partnership-gold {
+    width: 100%;
+    background-color: var(--color-gold, #d79f39);
+    color: #071b38;
+    padding: 16px 24px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(215, 159, 57, 0.25);
+  }
+
+  .btn-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-partnership-gold:hover {
+    background-color: #ffffff;
+    color: #071b38;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-partnership-gold:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+
+  .arrow-icon {
+    transition: transform 0.2s ease;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 1024px) {
+    .cta-container {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .cta-left {
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .contact-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .contact-action-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
 </style>

@@ -25,13 +25,12 @@
 			{ label: 'HOME', href: '/' },
 			{ label: 'ABOUT US', href: '/about' },
 			{ label: 'OUR BUSINESS', href: '/our-business' },
-			{ label: 'SERVICES', href: '/services' },
+			// { label: 'SERVICES', href: '/services' },
 			{ label: 'PROJECTS', href: '/projects' },
 			{ label: 'PARTNERSHIP', href: '/partnership' },
 			{ label: 'ESG', href: '/esg' },
 			{ label: 'LEGALITY', href: '/legality' },
-			{ label: 'NEWS', href: '/news' },
-			{ label: 'CONTACT', href: '/contact' }
+			{ label: 'NEWS', href: '/news' }
 		],
 		onCtaClick
 	}: Props = $props();
